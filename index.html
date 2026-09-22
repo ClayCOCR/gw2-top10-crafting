@@ -1,0 +1,1134 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+
+<meta name="author" content="Tu nombre o nick">
+<meta name="robots" content="index, follow">
+
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>GW2 TOP 10 Crafting</title>
+<style>
+* { box-sizing: border-box; }
+body {
+background-color: #1a1a1a;
+color: #e0e0e0;
+font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+margin: 0;
+padding: 20px;
+}
+.container { max-width: 1400px; margin: 0 auto; }
+
+.header { text-align: center; margin-bottom: 20px; }
+.header h1 {
+color: #ffd700; font-size: 2rem; margin: 0 0 20px 0;
+font-weight: 300; letter-spacing: 1px;
+}
+.top-bar {
+display: flex; justify-content: space-between; align-items: center;
+margin-bottom: 20px; flex-wrap: wrap; gap: 15px;
+}
+.instructions {
+background-color: #2a2a2a; border-radius: 8px; padding: 15px 20px;
+flex: 1; min-width: 300px; border-left: 4px solid #ffd700;
+}
+.instructions h3 { color: #ffd700; margin: 0 0 10px 0; font-size: 1rem; }
+.instructions ol { margin: 0; padding-left: 20px; font-size: 0.9rem; line-height: 1.5; }
+.instructions li { margin-bottom: 5px; }
+.instructions .note {
+margin-top: 10px; font-size: 0.85rem; color: #aaa;
+font-style: italic;
+}
+.update-section {
+display: flex; align-items: center; gap: 15px;
+}
+.btn-update {
+background-color: #e0e0e0; color: #1a1a1a; border: none;
+padding: 12px 30px; border-radius: 4px; font-size: 1.1rem;
+font-weight: bold; cursor: pointer; transition: all 0.2s;
+}
+.btn-update:hover { background-color: #ffd700; }
+.btn-update:disabled { background-color: #555; color: #888; cursor: not-allowed; }
+.last-update { color: #aaa; font-size: 0.9rem; }
+
+.tabs {
+display: flex; gap: 10px; margin-bottom: 0;
+border-bottom: 2px solid #333; flex-wrap: wrap;
+}
+.tab {
+background-color: #2a2a2a; color: #e0e0e0; border: none;
+padding: 12px 30px; border-radius: 8px 8px 0 0;
+font-size: 1rem; cursor: pointer; transition: all 0.2s;
+font-weight: 500;
+}
+.tab:hover { background-color: #3a3a3a; }
+.tab.active {
+background-color: #ffd700; color: #1a1a1a;
+font-weight: bold;
+}
+
+.tab-content { display: none; }
+.tab-content.active { display: block; }
+.content-box {
+background-color: #2a2a2a; border-radius: 0 8px 8px 8px;
+padding: 20px; min-height: 400px;
+}
+
+.table-container { overflow-x: auto; }
+table { width: 100%; border-collapse: collapse; min-width: 900px; }
+th, td { padding: 12px 14px; text-align: left; border-bottom: 1px solid #3a3a3a; }
+th {
+background-color: #1a1a1a; color: #ffd700; font-weight: 600;
+text-transform: uppercase; font-size: 0.8rem; letter-spacing: 0.05em;
+}
+tr:hover { background-color: #333; }
+.sales-cell { text-align: center; }
+input[type="number"] {
+background-color: #1a1a1a; color: #fff; border: 1px solid #555;
+padding: 6px 10px; border-radius: 4px; width: 70px;
+text-align: center; font-size: 0.95rem;
+}
+input[type="number"]:focus { outline: none; border-color: #ffd700; }
+input[type="number"]::-webkit-inner-spin-button,
+input[type="number"]::-webkit-outer-spin-button { -webkit-appearance: none; margin: 0; }
+.profit-positive { color: #4caf50; font-weight: bold; }
+
+.item-icon {
+width: 32px; height: 32px; border-radius: 4px;
+background-color: #333; display: inline-block;
+vertical-align: middle; margin-right: 8px;
+overflow: hidden; flex-shrink: 0;
+}
+.item-icon img { width: 100%; height: 100%; object-fit: cover; }
+
+.nav-buttons {
+display: flex; justify-content: flex-end; gap: 10px;
+margin-top: 20px; padding-top: 15px;
+border-top: 1px solid #3a3a3a;
+}
+.btn-nav {
+background-color: #3a3a3a; color: #e0e0e0; border: none;
+padding: 10px 20px; border-radius: 4px; cursor: pointer;
+font-size: 0.95rem; transition: all 0.2s;
+}
+.btn-nav:hover { background-color: #4a4a4a; }
+.btn-nav.primary {
+background-color: #ffd700; color: #1a1a1a; font-weight: bold;
+}
+.btn-nav.primary:hover { background-color: #ffea00; }
+
+.shopping-list { padding: 10px; }
+.sl-item {
+background-color: #1a1a1a; border-radius: 6px;
+margin-bottom: 8px; overflow: hidden;
+border: 1px solid #3a3a3a;
+}
+.sl-item-header {
+display: flex; align-items: center; padding: 12px 15px;
+gap: 12px; cursor: pointer; transition: background 0.2s;
+}
+.sl-item-header:hover { background-color: #252525; }
+.sl-checkbox {
+width: 18px; height: 18px; cursor: pointer;
+accent-color: #ffd700;
+}
+.sl-icon {
+width: 40px; height: 40px; border-radius: 4px;
+background-color: #333; display: flex; align-items: center;
+justify-content: center; flex-shrink: 0; overflow: hidden;
+}
+.sl-icon img { width: 100%; height: 100%; object-fit: cover; }
+.sl-name {
+flex: 1; font-size: 1rem; font-weight: 500;
+}
+.sl-name .qty { color: #ffd700; font-weight: bold; margin-right: 8px; }
+.sl-actions { display: flex; gap: 8px; align-items: center; }
+.btn-sell, .btn-craft {
+padding: 6px 14px; border-radius: 4px; border: none;
+font-size: 0.85rem; font-weight: bold; cursor: pointer;
+display: flex; align-items: center; gap: 5px;
+}
+.btn-sell {
+background-color: #2a5a8a; color: #fff;
+}
+.btn-sell:hover { background-color: #3a7aba; }
+.btn-craft {
+background-color: #6a3a8a; color: #fff;
+}
+.btn-craft:hover { background-color: #8a4aaa; }
+.btn-vendor {
+background-color: #8a6a2a; color: #fff;
+padding: 6px 14px; border-radius: 4px; border: none;
+font-size: 0.85rem; font-weight: bold; cursor: pointer;
+}
+.btn-vendor:hover { background-color: #aa8a3a; }
+.sl-expand {
+color: #888; font-size: 0.8rem; margin-left: 5px;
+transition: transform 0.2s; user-select: none;
+}
+.sl-expand.open { transform: rotate(90deg); }
+
+.sl-subitems {
+display: none; background-color: #222;
+padding: 10px 15px 10px 70px; border-top: 1px solid #3a3a3a;
+}
+.sl-subitems.open { display: block; }
+.sl-subitem {
+display: flex; align-items: center; gap: 10px;
+padding: 6px 0; font-size: 0.9rem;
+}
+.sl-subitem .qty { color: #ffd700; font-weight: bold; }
+.sl-subitem .arrow { color: #666; margin-right: 5px; }
+.sl-subitem .sub-icon {
+width: 24px; height: 24px; border-radius: 3px;
+background-color: #333; overflow: hidden; flex-shrink: 0;
+}
+.sl-subitem .sub-icon img { width: 100%; height: 100%; object-fit: cover; }
+
+.summary-bar {
+display: flex; gap: 30px; padding: 15px;
+background-color: #1a1a1a; border-radius: 8px;
+margin-bottom: 15px; flex-wrap: wrap;
+}
+.summary-item {
+display: flex; flex-direction: column;
+}
+.summary-label { color: #888; font-size: 0.8rem; }
+.summary-value { color: #ffd700; font-size: 1.3rem; font-weight: bold; }
+
+.loading {
+text-align: center; padding: 40px; font-size: 1.1rem;
+color: #ffd700; display: none;
+}
+.error {
+text-align: center; padding: 20px; color: #ff6b6b;
+background-color: #2a1a1a; border: 1px solid #522;
+border-radius: 8px; display: none; margin-bottom: 20px;
+}
+
+.empty-state {
+text-align: center; padding: 40px; color: #888;
+font-size: 1rem;
+}
+</style>
+</head>
+<body>
+<div class="container">
+
+<div class="header">
+  <h1>GW2 TOP 10 Crafting</h1>
+  <p style="color:#888; font-size:0.85rem; margin:0;">
+    Unofficial tool for Guild Wars 2 players · Prices and sales data updated in real-time
+  </p>
+</div>
+
+
+<div class="top-bar">
+<div class="instructions">
+<h3>Instructions:</h3>
+<ol>
+<li>Enter the quantities you want to craft in Crafting column. Making sure not to exceed the quantities listed in the "Suggested Sales" column.</li>
+<li>Once you've finished entering the desired quantities, go to the shopping list to see the items and their quantities to purchase.</li>
+</ol>
+<div class="note">Note: Remember that some recipes require items linked to your account, so you must already have those materials in your inventory.</div>
+</div>
+<div class="update-section">
+<button id="updateBtn" class="btn-update" onclick="updateAllData()">Update</button>
+<span id="lastUpdated" class="last-update">Last Update: --/--/---- --:--</span>
+</div>
+</div>
+
+<div class="tabs">
+<button class="tab active" data-tab="runes" onclick="switchTab('runes')">Runes</button>
+<button class="tab" data-tab="sigils" onclick="switchTab('sigils')">Sigils</button>
+<button class="tab" data-tab="relics" onclick="switchTab('relics')">Relics</button>
+<button class="tab" data-tab="bags" onclick="switchTab('bags')">Bags</button>
+<button class="tab" data-tab="shopping" onclick="switchTab('shopping')">Shopping List</button>
+</div>
+
+<div id="loading" class="loading">Loading recipes and calculating costs...</div>
+<div id="error" class="error"></div>
+
+<div id="tab-runes" class="tab-content active">
+<div class="content-box">
+<div class="table-container">
+<table>
+<thead>
+<tr>
+<th>Icon</th>
+<th>Name</th>
+<th>Sell Price</th>
+<th class="sales-cell">Sales Suggested/Day</th>
+<th>Profit/Unit</th>
+<th class="sales-cell">Crafting (Qty)</th>
+<th>Total Profit</th>
+</tr>
+</thead>
+<tbody id="runesBody"></tbody>
+</table>
+</div>
+<div class="nav-buttons">
+<button class="btn-nav" onclick="prevTab()">Prev</button>
+<button class="btn-nav" onclick="nextTab()">Next</button>
+<button class="btn-nav primary" onclick="switchTab('shopping')">Go to Shopping List</button>
+</div>
+</div>
+</div>
+
+<div id="tab-sigils" class="tab-content">
+<div class="content-box">
+<div class="table-container">
+<table>
+<thead>
+<tr>
+<th>Icon</th>
+<th>Name</th>
+<th>Sell Price</th>
+<th class="sales-cell">Sales Suggested/Day</th>
+<th>Profit/Unit</th>
+<th class="sales-cell">Crafting (Qty)</th>
+<th>Total Profit</th>
+</tr>
+</thead>
+<tbody id="sigilsBody"></tbody>
+</table>
+</div>
+<div class="nav-buttons">
+<button class="btn-nav" onclick="prevTab()">Prev</button>
+<button class="btn-nav" onclick="nextTab()">Next</button>
+<button class="btn-nav primary" onclick="switchTab('shopping')">Go to Shopping List</button>
+</div>
+</div>
+</div>
+
+<div id="tab-relics" class="tab-content">
+<div class="content-box">
+<div class="table-container">
+<table>
+<thead>
+<tr>
+<th>Icon</th>
+<th>Name</th>
+<th>Sell Price</th>
+<th class="sales-cell">Sales Suggested/Day</th>
+<th>Profit/Unit</th>
+<th class="sales-cell">Crafting (Qty)</th>
+<th>Total Profit</th>
+</tr>
+</thead>
+<tbody id="relicsBody"></tbody>
+</table>
+</div>
+<div class="nav-buttons">
+<button class="btn-nav" onclick="prevTab()">Prev</button>
+<button class="btn-nav" onclick="nextTab()">Next</button>
+<button class="btn-nav primary" onclick="switchTab('shopping')">Go to Shopping List</button>
+</div>
+</div>
+</div>
+
+<div id="tab-bags" class="tab-content">
+<div class="content-box">
+<div class="table-container">
+<table>
+<thead>
+<tr>
+<th>Icon</th>
+<th>Name</th>
+<th>Sell Price</th>
+<th class="sales-cell">Sales Suggested/Day</th>
+<th>Profit/Unit</th>
+<th class="sales-cell">Crafting (Qty)</th>
+<th>Total Profit</th>
+</tr>
+</thead>
+<tbody id="bagsBody"></tbody>
+</table>
+</div>
+<div class="nav-buttons">
+<button class="btn-nav" onclick="prevTab()">Prev</button>
+<button class="btn-nav" onclick="nextTab()">Next</button>
+<button class="btn-nav primary" onclick="switchTab('shopping')">Go to Shopping List</button>
+</div>
+</div>
+</div>
+
+<div id="tab-shopping" class="tab-content">
+<div class="content-box">
+<div class="summary-bar" id="summaryBar">
+<div class="summary-item">
+<span class="summary-label">Total Profit</span>
+<span class="summary-value" id="sumProfit">0G 00S 00C</span>
+</div>
+<div class="summary-item">
+<span class="summary-label">Crafting Cost</span>
+<span class="summary-value" id="sumCost">0G 00S 00C</span>
+</div>
+<div class="summary-item">
+<span class="summary-label">ROI</span>
+<span class="summary-value" id="sumROI">0.00%</span>
+</div>
+</div>
+<div id="shoppingListContainer" class="shopping-list">
+<div class="empty-state">Enter quantities in the category tabs and click "Go to Shopping List"</div>
+</div>
+<div class="nav-buttons">
+<button class="btn-nav" onclick="prevTab()">Prev</button>
+<button class="btn-nav" onclick="nextTab()">Next</button>
+</div>
+</div>
+</div>
+</div>
+
+<script>
+const RUNE_IDS = [24830, 70450, 44956, 24815, 24806, 24839, 44957, 70829, 74978, 71425, 24824, 76166, 36044, 24836, 24833, 76100, 24756, 44951, 24821, 68437, 69370, 24762, 38206, 24803, 71276, 49460, 89999, 82791, 85713, 83338, 84749, 24800, 82633, 24812, 24818, 81091, 84127, 83663, 73399, 72852, 83964, 83502, 83423, 24732, 24703, 24741, 24735, 24729, 24791, 24726, 24720, 24723, 24691, 24738, 24753, 24702, 24788, 24782, 48907, 24717, 24827, 24750, 24757, 24794, 24687, 24744, 24711, 24714, 24771, 24747, 24797, 24699, 24768, 24688, 24765, 24776, 24708, 24779, 24696];
+const SEAL_IDS = [24561, 24562, 24599, 24600, 24601, 24602, 24603, 24604, 24605, 24606, 24607, 24608, 24609, 24610, 24611, 24612, 24613, 24614, 24615, 24616, 24617, 24618, 24619, 24620, 24621, 24622, 24623, 24624, 24625, 24626, 24627, 24628, 24629, 24630, 24631, 24632, 24633, 24634, 24635, 24636, 24637, 24638, 24639, 24640, 24641, 24642, 24643, 24644, 24645, 24646, 24647, 24648, 24649, 24650, 24651, 24652, 24653, 24654, 24655, 24656, 24657, 24658, 24659, 24660, 24661, 24662, 24663, 24664, 24665, 24666, 24667, 24668, 24669, 24670, 24671, 24672, 24673, 24674, 24675, 24676, 24677, 24678, 24679, 24865, 24868, 44944, 44947, 44950, 48911, 49457, 68436, 72092, 74326, 81045];
+const RELIC_IDS = [99965, 100031, 100048, 100063, 100090, 100144, 100148, 100158, 100194, 100219, 100230, 100238, 100311, 100345, 100368, 100385, 100390, 100400, 100403, 100411, 100429, 100435, 100442, 100448, 100450, 100453, 100455, 100479, 100527, 100542, 100561, 100579, 100580, 100614, 100625, 100659, 100676, 100693, 100739, 100752, 100794, 100849, 100893, 100908, 100916, 100924, 100934, 100947, 104241, 104256, 104424, 104501];
+const BAG_IDS = [9406, 9409, 9411, 9413, 9478, 9480, 9482, 9484, 9486, 9488, 9491, 9494, 9566, 9567, 9569, 9571, 9572, 9574, 9404, 9414, 9416, 9418, 9576, 9581, 9420, 9421, 9422, 9423, 9429, 9430, 9451, 9454, 9459, 9462, 9466, 9468, 9586, 9588, 9589, 9591, 9593, 9594, 9439, 9445, 9449, 9580, 9427, 9585];
+
+// Precios de vendors (en copper)
+const VENDOR_PRICES = {
+13008: 200000,    // Greater Rune of Holding - 2G
+13007: 50,        // Major Rune of Holding - 50C
+13010: 496,       // Minor Rune of Holding - 4S 96C
+13006: 1480,      // Rune of Holding - 14S 80C
+13009: 1000000,   // Superior Rune of Holding - 10G
+19663: 2504,      // Bottle of Elonian Wine - 25S 04C
+19924: 48         // Lump of Primordium - 48C (10 units = 4S 80C)
+};
+
+// Items que DEBEN usar el precio de vendor obligatoriamente
+const VENDOR_FORCED_IDS = new Set([13006, 13007, 13008, 13009, 13010, 19924]);
+
+// Set con TODOS los IDs de las categorías principales
+const CRAFTABLE_CATEGORIES = new Set([
+...RUNE_IDS, ...SEAL_IDS, ...RELIC_IDS, ...BAG_IDS
+]);
+
+// ============ ESTADO GLOBAL - SEPARADO POR CATEGORÍAS ============
+// Recetas específicas de bags (como en bags.txt)
+let bagRecipes = new Map();
+// Recetas de ingredientes generales
+let ingredientRecipes = new Map();
+// Recetas de runas, sellos y reliquias combinadas
+let otherRecipes = new Map();
+
+let itemData = new Map();
+let priceData = new Map();
+let salesData = new Map();
+let categoryData = { runes: [], sigils: [], relics: [], bags: [] };
+let userQuantities = { runes: {}, sigils: {}, relics: {}, bags: {} };
+const TAB_ORDER = ['runes', 'sigils', 'relics', 'bags', 'shopping'];
+
+// Cache de costos separada
+let costCache = new Map();
+let bagCostCache = new Map();
+
+function formatCopper(copper) {
+if (!copper || copper < 0) copper = 0;
+const g = Math.floor(copper / 10000);
+const s = Math.floor((copper % 10000) / 100);
+const c = Math.floor(copper % 100);
+return `${String(g).padStart(2,'0')}G ${String(s).padStart(2,'0')}S ${String(c).padStart(2,'0')}C`;
+}
+
+function parseCSV(text) {
+const lines = text.trim().split('\n');
+const recipes = new Map();
+for (let i = 1; i < lines.length; i++) {
+const cols = lines[i].split(';');
+const outputId = parseInt(cols[0]);
+if (isNaN(outputId)) continue;
+const ingredients = [];
+for (let j = 1; j < cols.length; j += 2) {
+const ingId = parseInt(cols[j]);
+const ingQty = parseInt(cols[j+1]);
+if (!isNaN(ingId) && !isNaN(ingQty) && ingQty > 0) {
+ingredients.push({ id: ingId, qty: ingQty });
+}
+}
+if (ingredients.length > 0) {
+if (!recipes.has(outputId)) recipes.set(outputId, []);
+recipes.get(outputId).push({ ingredients, outputQty: 1 });
+}
+}
+return recipes;
+}
+
+async function loadAllRecipes() {
+// Cargar recetas de bags (separado como en bags.txt)
+try {
+const response = await fetch('recipes_only_bag.csv');
+if (response.ok) {
+bagRecipes = parseCSV(await response.text());
+console.log('Bag recipes loaded:', bagRecipes.size);
+}
+} catch (e) { console.warn('Could not load recipes_only_bag.csv:', e); }
+
+// Cargar recetas de ingredientes generales
+try {
+const response = await fetch('recipes_ingredients.csv');
+if (response.ok) {
+ingredientRecipes = parseCSV(await response.text());
+console.log('Ingredient recipes loaded:', ingredientRecipes.size);
+}
+} catch (e) { console.warn('Could not load recipes_ingredients.csv:', e); }
+
+// Cargar recetas de runas, sellos y reliquias
+const otherFiles = ['recipes_only_runes.csv', 'recipes_only_sigils.csv', 'recipes_only_relics.csv'];
+for (const file of otherFiles) {
+try {
+const response = await fetch(file);
+if (response.ok) {
+const recipes = parseCSV(await response.text());
+recipes.forEach((value, key) => {
+if (!otherRecipes.has(key)) otherRecipes.set(key, []);
+otherRecipes.get(key).push(...value);
+});
+}
+} catch (e) { console.warn(`Could not load ${file}:`, e); }
+}
+console.log('Other recipes loaded:', otherRecipes.size);
+}
+
+async function loadApiData() {
+const allIds = new Set([
+...RUNE_IDS, ...SEAL_IDS, ...RELIC_IDS, ...BAG_IDS
+]);
+
+// Agregar ingredientes de bags
+bagRecipes.forEach((recipes) => {
+recipes.forEach(r => r.ingredients.forEach(ing => allIds.add(ing.id)));
+});
+
+// Agregar ingredientes de ingredientRecipes
+ingredientRecipes.forEach((recipes) => {
+recipes.forEach(r => r.ingredients.forEach(ing => allIds.add(ing.id)));
+});
+
+// Agregar ingredientes de otherRecipes
+otherRecipes.forEach((recipes) => {
+recipes.forEach(r => r.ingredients.forEach(ing => allIds.add(ing.id)));
+});
+
+const idsArray = Array.from(allIds);
+for (let i = 0; i < idsArray.length; i += 200) {
+const chunk = idsArray.slice(i, i + 200);
+const idsStr = chunk.join(',');
+const [items, prices] = await Promise.all([
+fetch(`https://api.guildwars2.com/v2/items?ids=${idsStr}`).then(r => r.json()),
+fetch(`https://api.guildwars2.com/v2/commerce/prices?ids=${idsStr}`).then(r => r.json())
+]);
+items.forEach(item => itemData.set(item.id, item));
+prices.forEach(price => priceData.set(price.id, price));
+}
+
+const dw2Res = await fetch('https://api.datawars2.ie/gw2/v1/items/g_csv?fields=id,name,level,rarity,type,buy_price,sell_price,1d_buy_sold,1d_sell_sold,7d_buy_sold,7d_sell_sold');
+const csvText = await dw2Res.text();
+const lines = csvText.trim().split('\n');
+if (lines.length > 1) {
+const headers = lines[0].split(',').map(h => h.trim().replace(/"/g, '').toLowerCase());
+const idIdx = headers.indexOf('id');
+const sellSoldIdx = headers.indexOf('1d_sell_sold');
+for (let i = 1; i < lines.length; i++) {
+const cols = lines[i].split(',');
+if (cols[idIdx]) salesData.set(cols[idIdx], parseFloat(cols[sellSoldIdx]) || 0);
+}
+}
+}
+
+// ============ CÁLCULO DE COSTOS PARA RUNAS, SELLOS Y RELIQUIAS ============
+async function getOptimalCost(itemId, visited = new Set()) {
+if (costCache.has(itemId)) return costCache.get(itemId);
+if (visited.has(itemId)) return Infinity;
+visited.add(itemId);
+
+// Si es vendor-forced
+if (VENDOR_FORCED_IDS.has(itemId) && VENDOR_PRICES[itemId] !== undefined) {
+costCache.set(itemId, VENDOR_PRICES[itemId]);
+return VENDOR_PRICES[itemId];
+}
+
+const item = itemData.get(itemId);
+if (item && item.flags && (
+item.flags.includes('AccountBound') ||
+item.flags.includes('AccountBindOnUse') ||
+item.flags.includes('SoulbindOnAcquire') ||
+item.flags.includes('SoulBindOnUse')
+)) { costCache.set(itemId, 0); return 0; }
+
+const price = priceData.get(itemId);
+let tpPrice = Infinity;
+if (price) {
+const buyPrice = price.buys?.unit_price ?? Infinity;
+const sellPrice = price.sells?.unit_price ?? Infinity;
+tpPrice = Math.min(buyPrice, sellPrice);
+}
+
+const recipes = ingredientRecipes.get(itemId);
+let minCraftCost = Infinity;
+if (recipes && recipes.length > 0) {
+for (const recipe of recipes) {
+let currentCraftCost = 0;
+let canCraft = true;
+for (const ing of recipe.ingredients) {
+const ingCost = await getOptimalCost(ing.id, new Set(visited));
+if (ingCost === Infinity) { canCraft = false; break; }
+currentCraftCost += ingCost * ing.qty;
+}
+if (canCraft && currentCraftCost > 0) {
+const costPerUnit = currentCraftCost / recipe.outputQty;
+if (costPerUnit < minCraftCost) minCraftCost = costPerUnit;
+}
+}
+}
+
+let finalCost = Math.min(tpPrice, minCraftCost);
+if (finalCost === Infinity) finalCost = 0;
+costCache.set(itemId, finalCost);
+return finalCost;
+}
+
+async function calculateItemCraftCost(itemId) {
+const recipes = otherRecipes.get(itemId);
+if (!recipes || recipes.length === 0) return Infinity;
+let minCost = Infinity;
+for (const recipe of recipes) {
+let totalCost = 0;
+let canCraft = true;
+for (const ing of recipe.ingredients) {
+const ingCost = await getOptimalCost(ing.id);
+if (ingCost === Infinity) { canCraft = false; break; }
+totalCost += ingCost * ing.qty;
+}
+if (canCraft && totalCost < minCost) minCost = totalCost;
+}
+return minCost;
+}
+
+// ============ CÁLCULO DE COSTOS PARA BAGS (IGUAL QUE bags.txt) ============
+async function getBagOptimalCost(itemId, visited = new Set()) {
+if (bagCostCache.has(itemId)) return bagCostCache.get(itemId);
+if (visited.has(itemId)) return Infinity;
+visited.add(itemId);
+
+const item = itemData.get(itemId);
+if (item && item.flags && (
+item.flags.includes('AccountBound') ||
+item.flags.includes('AccountBindOnUse') ||
+item.flags.includes('SoulbindOnAcquire') ||
+item.flags.includes('SoulBindOnUse')
+)) { bagCostCache.set(itemId, 0); return 0; }
+
+const price = priceData.get(itemId);
+let tpPrice = Infinity;
+if (price) {
+const buyPrice = price.buys?.unit_price ?? Infinity;
+const sellPrice = price.sells?.unit_price ?? Infinity;
+tpPrice = Math.min(buyPrice, sellPrice);
+}
+
+const recipes = ingredientRecipes.get(itemId);
+let minCraftCost = Infinity;
+if (recipes && recipes.length > 0) {
+for (const recipe of recipes) {
+let currentCraftCost = 0;
+let canCraft = true;
+for (const ing of recipe.ingredients) {
+const ingCost = await getBagOptimalCost(ing.id, new Set(visited));
+if (ingCost === Infinity) { canCraft = false; break; }
+currentCraftCost += ingCost * ing.qty;
+}
+if (canCraft && currentCraftCost > 0) {
+const costPerUnit = currentCraftCost / recipe.outputQty;
+if (costPerUnit < minCraftCost) minCraftCost = costPerUnit;
+}
+}
+}
+
+let finalCost = Math.min(tpPrice, minCraftCost);
+if (finalCost === Infinity) finalCost = 0;
+bagCostCache.set(itemId, finalCost);
+return finalCost;
+}
+
+async function calculateBagCraftCost(bagId) {
+const recipes = bagRecipes.get(bagId);
+if (!recipes || recipes.length === 0) return Infinity;
+let minCost = Infinity;
+for (const recipe of recipes) {
+let totalCost = 0;
+let canCraft = true;
+for (const ing of recipe.ingredients) {
+const ingCost = await getBagOptimalCost(ing.id);
+if (ingCost === Infinity) { canCraft = false; break; }
+totalCost += ingCost * ing.qty;
+}
+if (canCraft && totalCost < minCost) {
+minCost = totalCost;
+}
+}
+return minCost;
+}
+
+// ============ PROCESAMIENTO POR CATEGORÍA ============
+async function processCategory(ids, categoryKey) {
+const results = [];
+for (const id of ids) {
+const item = itemData.get(id);
+const price = priceData.get(id);
+const sellPrice = price?.sells?.unit_price || 0;
+
+// BAGS usa calculateBagCraftCost, las demás usan calculateItemCraftCost
+let craftCost;
+if (categoryKey === 'bags') {
+craftCost = await calculateBagCraftCost(id);
+} else {
+craftCost = await calculateItemCraftCost(id);
+}
+
+if (craftCost === Infinity) continue;
+const profit = (sellPrice * 0.85) - craftCost;
+const dailySales = salesData.get(String(id)) || 0;
+const suggestedSales = Math.round(dailySales * 0.10);
+if (profit > 0) {
+results.push({ id, name: item?.name || `Unknown (${id})`, sellPrice, craftCost, profit, dailySales: suggestedSales, icon: item?.icon || null });
+}
+}
+results.sort((a, b) => b.dailySales - a.dailySales);
+categoryData[categoryKey] = results.slice(0, 10);
+}
+
+function renderCategoryTable(categoryKey, tbodyId) {
+const tbody = document.getElementById(tbodyId);
+tbody.innerHTML = '';
+const data = categoryData[categoryKey];
+if (data.length === 0) {
+tbody.innerHTML = '<tr><td colspan="7" style="text-align:center; padding:20px;">No data available.</td></tr>';
+return;
+}
+data.forEach(item => {
+const tr = document.createElement('tr');
+const currentQty = userQuantities[categoryKey][item.id] || 0;
+const iconHtml = item.icon
+? `<div class="item-icon"><img src="${item.icon}" alt="${item.name}" onerror="this.parentElement.textContent='?'"></div>`
+: '<div class="item-icon">?</div>';
+tr.innerHTML = `
+<td>${iconHtml}</td>
+<td>${item.name}</td>
+<td>${formatCopper(item.sellPrice)}</td>
+<td class="sales-cell">${item.dailySales}</td>
+<td class="profit-positive">${formatCopper(item.profit)}</td>
+<td class="sales-cell"><input type="number" min="0" max="${item.dailySales}" value="${currentQty}" data-id="${item.id}" data-category="${categoryKey}" oninput="updateQuantity(this)"></td>
+<td class="profit-positive row-total">${formatCopper(item.profit * currentQty)}</td>
+`;
+tbody.appendChild(tr);
+});
+}
+
+function updateQuantity(input) {
+const id = parseInt(input.dataset.id);
+const category = input.dataset.category;
+let qty = parseInt(input.value) || 0;
+const maxQty = parseInt(input.max);
+if (qty > maxQty) { qty = maxQty; input.value = maxQty; }
+if (qty < 0) { qty = 0; input.value = 0; }
+userQuantities[category][id] = qty;
+const item = categoryData[category].find(i => i.id === id);
+if (item) {
+input.closest('tr').querySelector('.row-total').textContent = formatCopper(item.profit * qty);
+}
+}
+
+function calculateTotalProfit() {
+let totalProfit = 0;
+for (const cat of ['runes', 'sigils', 'relics', 'bags']) {
+for (const [idStr, qty] of Object.entries(userQuantities[cat])) {
+const id = parseInt(idStr);
+const item = categoryData[cat].find(i => i.id === id);
+if (item && qty > 0) {
+totalProfit += item.profit * qty;
+}
+}
+}
+return totalProfit;
+}
+
+async function buildShoppingList() {
+const requirements = new Map();
+const categories = ['runes', 'sigils', 'relics', 'bags'];
+
+for (const cat of categories) {
+for (const [idStr, qty] of Object.entries(userQuantities[cat])) {
+const id = parseInt(idStr);
+if (qty > 0) await expandIngredients(id, qty, requirements, new Set());
+}
+}
+
+const list = [];
+let totalCost = 0;
+
+for (const [itemId, quantity] of requirements.entries()) {
+const item = itemData.get(itemId);
+const price = priceData.get(itemId);
+const vendorPrice = VENDOR_PRICES[itemId];
+const isVendorForced = VENDOR_FORCED_IDS.has(itemId);
+
+let tpPrice = Infinity;
+if (price) {
+const buyPrice = price.buys?.unit_price ?? Infinity;
+const sellPrice = price.sells?.unit_price ?? Infinity;
+tpPrice = Math.min(buyPrice, sellPrice);
+}
+
+const recipes = ingredientRecipes.get(itemId);
+let craftCost = Infinity;
+if (recipes && recipes.length > 0) {
+for (const recipe of recipes) {
+let total = 0;
+let canCraft = true;
+for (const ing of recipe.ingredients) {
+const ingPrice = priceData.get(ing.id);
+if (ingPrice) {
+const ingTp = Math.min(ingPrice.buys?.unit_price ?? Infinity, ingPrice.sells?.unit_price ?? Infinity);
+if (ingTp === Infinity) { canCraft = false; break; }
+total += ingTp * ing.qty;
+} else { canCraft = false; break; }
+}
+if (canCraft && total > 0) {
+const costPerUnit = total / recipe.outputQty;
+if (costPerUnit < craftCost) craftCost = costPerUnit;
+}
+}
+}
+
+let source = 'tp';
+let unitCost = tpPrice;
+
+if (isVendorForced && vendorPrice !== undefined) {
+source = 'vendor';
+unitCost = vendorPrice;
+} else {
+if (vendorPrice !== undefined && vendorPrice < unitCost) { source = 'vendor'; unitCost = vendorPrice; }
+if (craftCost < unitCost && craftCost < Infinity) { source = 'craft'; unitCost = craftCost; }
+}
+
+if (unitCost === Infinity) { unitCost = 0; source = 'tp'; }
+
+const itemTotal = unitCost * quantity;
+totalCost += itemTotal;
+
+list.push({
+id: itemId, name: item?.name || `Unknown (${itemId})`,
+quantity, source, unitCost, total: itemTotal,
+hasRecipe: recipes && recipes.length > 0,
+icon: item?.icon || null
+});
+}
+
+list.sort((a, b) => b.quantity - a.quantity);
+renderShoppingList(list, totalCost);
+}
+
+async function expandIngredients(itemId, quantity, requirements, visited) {
+if (visited.has(itemId)) {
+requirements.set(itemId, (requirements.get(itemId) || 0) + quantity);
+return;
+}
+visited.add(itemId);
+
+if (VENDOR_FORCED_IDS.has(itemId)) {
+requirements.set(itemId, (requirements.get(itemId) || 0) + quantity);
+return;
+}
+
+const item = itemData.get(itemId);
+if (item && item.flags && (
+item.flags.includes('AccountBound') ||
+item.flags.includes('AccountBindOnUse') ||
+item.flags.includes('SoulbindOnAcquire') ||
+item.flags.includes('SoulBindOnUse')
+)) return;
+
+// Si es de categorías principales, SIEMPRE expandir
+if (CRAFTABLE_CATEGORIES.has(itemId)) {
+// BAGS usa bagRecipes, las demás usan otherRecipes
+let recipes;
+if (BAG_IDS.includes(itemId)) {
+recipes = bagRecipes.get(itemId);
+} else {
+recipes = otherRecipes.get(itemId);
+}
+
+if (recipes && recipes.length > 0) {
+const recipe = recipes[0];
+for (const ing of recipe.ingredients) {
+const ingQty = Math.ceil((quantity / recipe.outputQty) * ing.qty);
+await expandIngredients(ing.id, ingQty, requirements, new Set(visited));
+}
+} else {
+requirements.set(itemId, (requirements.get(itemId) || 0) + quantity);
+}
+return;
+}
+
+// Para items que NO son de categorías principales
+const recipes = ingredientRecipes.get(itemId);
+if (!recipes || recipes.length === 0) {
+requirements.set(itemId, (requirements.get(itemId) || 0) + quantity);
+return;
+}
+
+const price = priceData.get(itemId);
+let tpPrice = Infinity;
+if (price) {
+const buyPrice = price.buys?.unit_price ?? Infinity;
+const sellPrice = price.sells?.unit_price ?? Infinity;
+tpPrice = Math.min(buyPrice, sellPrice);
+}
+
+let craftCost = Infinity;
+for (const recipe of recipes) {
+let total = 0;
+let canCraft = true;
+for (const ing of recipe.ingredients) {
+const ingPrice = priceData.get(ing.id);
+if (ingPrice) {
+const ingTp = Math.min(ingPrice.buys?.unit_price ?? Infinity, ingPrice.sells?.unit_price ?? Infinity);
+if (ingTp === Infinity) { canCraft = false; break; }
+total += ingTp * ing.qty;
+} else { canCraft = false; break; }
+}
+if (canCraft && total > 0) {
+const costPerUnit = total / recipe.outputQty;
+if (costPerUnit < craftCost) craftCost = costPerUnit;
+}
+}
+
+if (craftCost < tpPrice && craftCost < Infinity) {
+const recipe = recipes[0];
+for (const ing of recipe.ingredients) {
+const ingQty = Math.ceil((quantity / recipe.outputQty) * ing.qty);
+await expandIngredients(ing.id, ingQty, requirements, new Set(visited));
+}
+} else {
+requirements.set(itemId, (requirements.get(itemId) || 0) + quantity);
+}
+}
+
+function renderShoppingList(list, totalCost) {
+const totalProfit = calculateTotalProfit();
+const roi = totalCost > 0 ? (totalProfit / totalCost) * 100 : 0;
+
+document.getElementById('sumProfit').textContent = formatCopper(totalProfit);
+document.getElementById('sumCost').textContent = formatCopper(totalCost);
+document.getElementById('sumROI').textContent = `${roi.toFixed(2)}%`;
+
+const container = document.getElementById('shoppingListContainer');
+if (list.length === 0) {
+container.innerHTML = '<div class="empty-state">No items selected. Enter quantities in the category tabs.</div>';
+return;
+}
+
+container.innerHTML = '';
+list.forEach((item, idx) => {
+const div = document.createElement('div');
+div.className = 'sl-item';
+const iconHtml = item.icon
+? `<img src="${item.icon}" alt="${item.name}" onerror="this.parentElement.textContent='?'">`
+: '?';
+
+let actionsHtml = '';
+if (item.source === 'vendor') {
+actionsHtml = `<button class="btn-vendor">Vendor ${formatCopper(item.unitCost)}</button>`;
+} else if (item.source === 'craft') {
+actionsHtml = `
+<button class="btn-sell">Sell ${formatCopper(getTpPrice(item.id))}</button>
+<button class="btn-craft">Craft ${formatCopper(item.unitCost)}</button>
+`;
+} else {
+actionsHtml = `<button class="btn-sell">Buy ${formatCopper(item.unitCost)}</button>`;
+}
+
+const hasSubitems = item.hasRecipe && item.source === 'craft';
+const expandHtml = hasSubitems ? '<span class="sl-expand" id="expand-'+idx+'">▶</span>' : '';
+
+div.innerHTML = `
+<div class="sl-item-header" ${hasSubitems ? `onclick="toggleSubitems(${idx})"` : ''}>
+<input type="checkbox" class="sl-checkbox" onclick="event.stopPropagation()">
+<div class="sl-icon">${iconHtml}</div>
+<div class="sl-name"><span class="qty">${item.quantity} x</span>${item.name}</div>
+<div class="sl-actions">${actionsHtml}</div>
+${expandHtml}
+</div>
+${hasSubitems ? `<div class="sl-subitems" id="subitems-${idx}"></div>` : ''}
+`;
+container.appendChild(div);
+
+if (hasSubitems) {
+loadSubitems(idx, item.id, item.quantity);
+}
+});
+}
+
+function getTpPrice(itemId) {
+const price = priceData.get(itemId);
+if (!price) return 0;
+const buyPrice = price.buys?.unit_price ?? Infinity;
+const sellPrice = price.sells?.unit_price ?? Infinity;
+return Math.min(buyPrice, sellPrice);
+}
+
+async function loadSubitems(idx, itemId, quantity) {
+const recipes = ingredientRecipes.get(itemId);
+if (!recipes || recipes.length === 0) return;
+const recipe = recipes[0];
+const container = document.getElementById('subitems-' + idx);
+container.innerHTML = '';
+for (const ing of recipe.ingredients) {
+const ingQty = Math.ceil((quantity / recipe.outputQty) * ing.qty);
+const ingItem = itemData.get(ing.id);
+const ingPrice = priceData.get(ing.id);
+let tpPrice = 0;
+if (ingPrice) {
+const buyPrice = ingPrice.buys?.unit_price ?? Infinity;
+const sellPrice = ingPrice.sells?.unit_price ?? Infinity;
+tpPrice = Math.min(buyPrice, sellPrice);
+}
+const iconHtml = ingItem?.icon
+? `<img src="${ingItem.icon}" alt="${ingItem.name}" onerror="this.style.display='none'">`
+: '';
+const subDiv = document.createElement('div');
+subDiv.className = 'sl-subitem';
+subDiv.innerHTML = `
+<span class="arrow">─</span>
+<div class="sub-icon">${iconHtml}</div>
+<span class="qty">${ingQty} x</span>
+<span>${ingItem?.name || `Unknown (${ing.id})`}</span>
+<span style="margin-left:auto; color:#888;">${formatCopper(tpPrice)}</span>
+`;
+container.appendChild(subDiv);
+}
+}
+
+function toggleSubitems(idx) {
+const sub = document.getElementById('subitems-' + idx);
+const expand = document.getElementById('expand-' + idx);
+if (sub.classList.contains('open')) {
+sub.classList.remove('open');
+expand.classList.remove('open');
+} else {
+sub.classList.add('open');
+expand.classList.add('open');
+}
+}
+
+function switchTab(tabName) {
+document.querySelectorAll('.tab').forEach(t => t.classList.remove('active'));
+document.querySelectorAll('.tab-content').forEach(c => c.classList.remove('active'));
+document.querySelector(`.tab[data-tab="${tabName}"]`).classList.add('active');
+document.getElementById('tab-' + tabName).classList.add('active');
+if (tabName === 'shopping') buildShoppingList();
+}
+
+function getCurrentTabIdx() {
+const active = document.querySelector('.tab.active');
+return TAB_ORDER.indexOf(active.dataset.tab);
+}
+
+function nextTab() {
+const idx = getCurrentTabIdx();
+const next = (idx + 1) % TAB_ORDER.length;
+switchTab(TAB_ORDER[next]);
+}
+
+function prevTab() {
+const idx = getCurrentTabIdx();
+const prev = (idx - 1 + TAB_ORDER.length) % TAB_ORDER.length;
+switchTab(TAB_ORDER[prev]);
+}
+
+async function updateAllData() {
+const btn = document.getElementById('updateBtn');
+const loading = document.getElementById('loading');
+const errorDiv = document.getElementById('error');
+btn.disabled = true;
+loading.style.display = 'block';
+errorDiv.style.display = 'none';
+costCache.clear();
+bagCostCache.clear();
+bagRecipes.clear();
+ingredientRecipes.clear();
+otherRecipes.clear();
+itemData.clear();
+priceData.clear();
+salesData.clear();
+try {
+await loadAllRecipes();
+await loadApiData();
+await Promise.all([
+processCategory(RUNE_IDS, 'runes'),
+processCategory(SEAL_IDS, 'sigils'),
+processCategory(RELIC_IDS, 'relics'),
+processCategory(BAG_IDS, 'bags')
+]);
+renderCategoryTable('runes', 'runesBody');
+renderCategoryTable('sigils', 'sigilsBody');
+renderCategoryTable('relics', 'relicsBody');
+renderCategoryTable('bags', 'bagsBody');
+document.getElementById('lastUpdated').textContent =
+`Last Update: ${new Date().toLocaleString()}`;
+} catch (e) {
+console.error(e);
+errorDiv.textContent = `Error: ${e.message}`;
+errorDiv.style.display = 'block';
+} finally {
+loading.style.display = 'none';
+btn.disabled = false;
+}
+}
+
+document.addEventListener('DOMContentLoaded', updateAllData);
+</script>
+
+<footer style="
+  text-align:center; 
+  padding:30px 20px; 
+  margin-top:40px; 
+  border-top:1px solid #333;
+  color:#888; 
+  font-size:0.8rem; 
+  line-height:1.8;
+">
+  <p style="margin:0 0 10px 0;">
+    <strong style="color:#aaa;">GW2 TOP 10 Crafting</strong> is an unofficial fan-made tool.
+  </p>
+  <p style="margin:0 0 10px 0;">
+    Guild Wars 2 and all associated logos, designs, and other marks are 
+    trademarks or registered trademarks of <strong>ArenaNet, LLC</strong>.
+  </p>
+  <p style="margin:0 0 10px 0;">
+    Item data and prices provided by the official 
+    <a href="https://wiki.guildwars2.com/wiki/API:Main" 
+       style="color:#ffd700; text-decoration:none;" 
+       target="_blank" rel="noopener">Guild Wars 2 API</a>.
+  </p>
+  <p style="margin:0 0 10px 0;">
+    Sales volume data provided by 
+    <a href="https://datawars2.ie/" 
+       style="color:#ffd700; text-decoration:none;" 
+       target="_blank" rel="noopener">DataWars2</a>.
+  </p>
+  <p style="margin:0;">
+    This site is not affiliated with, endorsed, sponsored, or specifically approved by 
+    ArenaNet, LLC or NCSoft.
+  </p>
+  <p style="margin:15px 0 0 0;">
+    <a href="privacy.html" style="color:#ffd700; text-decoration:none; margin:0 10px;">Privacy Policy</a> ·
+    <a href="about.html" style="color:#ffd700; text-decoration:none; margin:0 10px;">About</a> ·
+    <a href="contact.html" style="color:#ffd700; text-decoration:none; margin:0 10px;">Contact</a>
+  </p>
+</footer>
+
+</body>
+</html>
