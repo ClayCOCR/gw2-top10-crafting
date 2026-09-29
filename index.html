@@ -1,204 +1,222 @@
 <!DOCTYPE html>
 <html lang="es">
-<head>
-<meta charset="UTF-8">
-<meta name="viewport" content="width=device-width, initial-scale=1.0">
-<meta name="author" content="GW2 Top 10 Crafting">
-<meta name="robots" content="index, follow">
-<title>GW2 TOP 10 Crafting</title>
-<script src="https://cdn.tailwindcss.com"></script>
-<style>
-.sl-expand { transition: transform 0.2s; user-select: none; }
-.sl-expand.open { transform: rotate(90deg); }
-.sl-subitems { display: none; }
-.sl-subitems.open { display: block; }
-input[type="number"]::-webkit-inner-spin-button,
-input[type="number"]::-webkit-outer-spin-button { -webkit-appearance: none; margin: 0; }
-</style>
-</head>
-<body class="bg-slate-900 text-slate-200 font-sans antialiased flex flex-col min-h-screen">
+ <head>
+     <meta charset="UTF-8">
+     <meta name="viewport" content="width=device-width, initial-scale=1.0">
+     <meta name="author" content="GW2 Top 10 Crafting">
+     <meta name="robots" content="index, follow">
+     <title>GW2 TOP 10 Crafting</title>
+     <script src="https://cdn.tailwindcss.com"></script>
 
-<header class="bg-slate-800 border-b border-slate-700 py-4 sticky top-0 z-50">
-<div class="max-w-6xl mx-auto px-6 flex justify-between items-center">
-<h1 class="text-2xl font-bold text-amber-400">GW2 TOP 10 Crafting</h1>
-<div class="flex items-center space-x-2 text-sm font-medium">
-<button onclick="setLanguage('en')" class="px-3 py-1 rounded bg-amber-400/20 hover:bg-amber-400/30 text-amber-400 border border-amber-400/50 transition-colors font-medium">EN</button>
-<button onclick="setLanguage('es')" class="px-3 py-1 rounded bg-amber-400/20 hover:bg-amber-400/30 text-amber-400 border border-amber-400/50 transition-colors font-medium">ES</button>
-</div>
-</div>
-</header>
+     <style>
+         .sl-expand { transition: transform 0.2s; user-select: none; }
+         .sl-expand.open { transform: rotate(90deg); }
+         .sl-subitems { display: none; }
+         .sl-subitems.open { display: block; }
+         input[type="number"]::-webkit-inner-spin-button,
+         input[type="number"]::-webkit-outer-spin-button { -webkit-appearance: none; margin: 0; }
+     </style>
+ </head>
+ <body class="bg-slate-900 text-slate-200 font-sans antialiased flex flex-col min-h-screen">
 
-<main class="flex-grow max-w-6xl mx-auto px-6 py-8 w-full">
-<div class="flex flex-col md:flex-row justify-between items-start gap-6 mb-8">
-<div class="bg-slate-800 rounded-lg p-6 border border-slate-700 border-l-4 border-l-amber-400 flex-1 w-full">
-<h3 class="text-amber-400 font-semibold mb-3 lang-es">Instrucciones:</h3>
-<h3 class="text-amber-400 font-semibold mb-3 lang-en hidden">Instructions:</h3>
-<ol class="list-decimal list-inside text-sm text-slate-300 space-y-2 lang-es">
-<li>Ingresa las cantidades que deseas craftear en la columna "Crafting". Asegúrate de no exceder las cantidades listadas en "Ventas Sugeridas".</li>
-<li>Una vez termines, ve a la lista de compras para ver los artículos y cantidades a comprar.</li>
-</ol>
-<ol class="list-decimal list-inside text-sm text-slate-300 space-y-2 lang-en hidden">
-<li>Enter the quantities you want to craft in the "Crafting" column. Make sure not to exceed the quantities listed in "Suggested Sales".</li>
-<li>Once finished, go to the shopping list to see the items and quantities to purchase.</li>
-</ol>
-<p class="mt-3 text-xs text-slate-400 italic lang-es">Nota: Algunas recetas requieren artículos vinculados a tu cuenta, por lo que ya debes tener esos materiales en tu inventario.</p>
-<p class="mt-3 text-xs text-slate-400 italic lang-en hidden">Note: Some recipes require items linked to your account, so you must already have those materials in your inventory.</p>
-</div>
-<div class="flex flex-col items-center justify-center bg-slate-800 rounded-lg p-6 border border-slate-700 min-w-[250px]">
-<button id="updateBtn" class="w-full bg-slate-200 text-slate-900 font-bold py-3 px-6 rounded hover:bg-amber-400 transition-colors disabled:bg-slate-600 disabled:text-slate-400 disabled:cursor-not-allowed mb-2 lang-es">Actualizar</button>
-<button id="updateBtn-en" class="w-full bg-slate-200 text-slate-900 font-bold py-3 px-6 rounded hover:bg-amber-400 transition-colors disabled:bg-slate-600 disabled:text-slate-400 disabled:cursor-not-allowed mb-2 lang-en hidden">Update</button>
-<span id="lastUpdated" class="text-xs text-slate-400 lang-es">Última actualización: --/--/---- --:--</span>
-<span id="lastUpdated-en" class="text-xs text-slate-400 lang-en hidden">Last Update: --/--/---- --:--</span>
-</div>
-</div>
+ <header class="bg-slate-800 border-b border-slate-700 py-4 sticky top-0 z-50">
+     <div class="max-w-6xl mx-auto px-6 flex justify-between items-center">
+         <h1 class="text-2xl font-bold text-amber-400">GW2 TOP 10 Crafting</h1>
+          <div class="flex items-center space-x-2 text-sm font-medium">
+             <button onclick="setLanguage('en')" class="px-3 py-1 rounded bg-amber-400/20 hover:bg-amber-400/30 text-amber-400 border border-amber-400/50 transition-colors font-medium">EN</button>
+             <button onclick="setLanguage('es')" class="px-3 py-1 rounded bg-amber-400/20 hover:bg-amber-400/30 text-amber-400 border border-amber-400/50 transition-colors font-medium">ES</button>
+         </div>
+     </div>
+ </header>
 
-<div class="flex flex-wrap gap-2 mb-0 border-b-2 border-slate-700">
-<button class="tab-btn px-6 py-3 rounded-t-lg bg-slate-800 text-slate-300 hover:bg-slate-700 transition-colors font-medium border border-slate-700 border-b-0" data-tab="runes" onclick="switchTab('runes')">
-<span class="lang-es">Runas</span><span class="lang-en hidden">Runes</span>
-</button>
-<button class="tab-btn px-6 py-3 rounded-t-lg bg-slate-800 text-slate-300 hover:bg-slate-700 transition-colors font-medium border border-slate-700 border-b-0" data-tab="sigils" onclick="switchTab('sigils')">
-<span class="lang-es">Sellos</span><span class="lang-en hidden">Sigils</span>
-</button>
-<button class="tab-btn px-6 py-3 rounded-t-lg bg-slate-800 text-slate-300 hover:bg-slate-700 transition-colors font-medium border border-slate-700 border-b-0" data-tab="relics" onclick="switchTab('relics')">
-<span class="lang-es">Reliquias</span><span class="lang-en hidden">Relics</span>
-</button>
-<button class="tab-btn px-6 py-3 rounded-t-lg bg-slate-800 text-slate-300 hover:bg-slate-700 transition-colors font-medium border border-slate-700 border-b-0" data-tab="bags" onclick="switchTab('bags')">
-<span class="lang-es">Bolsas</span><span class="lang-en hidden">Bags</span>
-</button>
-<button class="tab-btn px-6 py-3 rounded-t-lg bg-slate-800 text-slate-300 hover:bg-slate-700 transition-colors font-medium border border-slate-700 border-b-0" data-tab="shopping" onclick="switchTab('shopping')">
-<span class="lang-es">Lista de Compras</span><span class="lang-en hidden">Shopping List</span>
-</button>
-</div>
+ <!-- APARTADO DE INSTRUCCIONES -->
+ <main class="flex-grow max-w-6xl mx-auto px-6 py-8 w-full">
+ <div class="flex flex-col md:flex-row justify-between items-start gap-6 mb-8">
+      <div class="bg-slate-800 rounded-lg p-6 border border-slate-700 border-l-4 border-l-amber-400 flex-1 w-full">
+         <h3 class="text-amber-400 font-semibold mb-3 lang-es">Instrucciones:</h3>
+         <h3 class="text-amber-400 font-semibold mb-3 lang-en hidden">Instructions:</h3>
+         <ol class="list-decimal list-inside text-sm text-slate-300 space-y-2 lang-es">
+             <li>Ingresa las cantidades que deseas craftear en la columna "Crafting". Asegúrate de no exceder las cantidades listadas en "Ventas Sugeridas".</li>
+             <li>Una vez termines, ve a la lista de compras para ver los artículos y cantidades a comprar.</li>
+            </ol>
+         <ol class="list-decimal list-inside text-sm text-slate-300 space-y-2 lang-en hidden">
+             <li>Enter the quantities you want to craft in the "Crafting" column. Make sure not to exceed the quantities listed in "Suggested Sales".</li>
+             <li>Once finished, go to the shopping list to see the items and quantities to purchase.</li>
+         </ol>
+         <p class="mt-3 text-xs text-slate-400 italic lang-es">Nota: Algunas recetas requieren artículos vinculados a tu cuenta, por lo que ya debes tener esos materiales en tu inventario.</p>
+         <p class="mt-3 text-xs text-slate-400 italic lang-en hidden">Note: Some recipes require items linked to your account, so you must already have those materials in your inventory.</p>
+         <ol class="list-decimal list-inside text-sm text-slate-300 space-y-2 mt-3 lang-es" start="3">
+             <li>Fabrica los ítems que escogiste en el paso 1 y véndelos en el bazar.</li>
+         </ol>
+         <ol class="list-decimal list-inside text-sm text-slate-300 space-y-2 mt-3 lang-en hidden" start="3">
+             <li>Craft the items you chose in step 1 and sell them at the Trading Post.</li>
+         </ol>
+         <p class="mt-3 text-xs text-slate-400 italic lang-es"><strong>IMPORTANTE:</strong> Postéalos en el bazar, publica en lotes pequeños y <u>baja el precio solo 1 cobre</u>. Si bajas mucho el precio perderás oro!!!</p>
+         <p class="mt-3 text-xs text-slate-400 italic lang-en hidden"><strong>IMPORTANT:</strong> List them at the Trading Post, post in small batches, and <u>lower the price by only 1 copper</u>. If you lower the price too much you will lose gold!!!</p>
+     </div>
 
-<div id="loading" class="text-center py-12 text-amber-400 text-xl hidden">
-<p class="lang-es">Cargando recetas y calculando costos...</p>
-<p class="lang-en hidden">Loading recipes and calculating costs...</p>
-</div>
-<div id="error" class="text-center py-6 text-red-400 bg-red-900/20 border border-red-800 rounded-lg hidden"></div>
+ <!-- boton de actualización -->
+     <div class="flex flex-col items-center justify-center bg-slate-800 rounded-lg p-6 border border-slate-700 min-w-[250px]">
+         <button id="updateBtn" onclick="updateAllData()" class="w-full bg-slate-200 text-slate-900 font-bold py-3 px-6 rounded hover:bg-amber-400 transition-colors disabled:bg-slate-600 disabled:text-slate-400 disabled:cursor-not-allowed mb-2 lang-es">Actualizar</button>
+         <button id="updateBtn-en" onclick="updateAllData()" class="w-full bg-slate-200 text-slate-900 font-bold py-3 px-6 rounded hover:bg-amber-400 transition-colors disabled:bg-slate-600 disabled:text-slate-400 disabled:cursor-not-allowed mb-2 lang-en hidden">Update</button>
+         <span id="lastUpdated" class="text-xs text-slate-400 lang-es">Última actualización: --/--/---- --:--</span>
+         <span id="lastUpdated-en" class="text-xs text-slate-400 lang-en hidden">Last Update: --/--/---- --:--</span>
+     </div>
+ </div>
+ 
+ <!-- tabla de botones -->
+ <div class="flex flex-wrap gap-2 mb-0 border-b-2 border-slate-700">
+     <button class="tab-btn px-6 py-3 rounded-t-lg bg-slate-800 text-slate-300 hover:bg-slate-700 transition-colors font-medium border border-slate-700 border-b-0" data-tab="runes" onclick="switchTab('runes')">
+         <span class="lang-es">Runas</span><span class="lang-en hidden">Runes</span>
+      </button>
+     <button class="tab-btn px-6 py-3 rounded-t-lg bg-slate-800 text-slate-300 hover:bg-slate-700 transition-colors font-medium border border-slate-700 border-b-0" data-tab="sigils" onclick="switchTab('sigils')">
+         <span class="lang-es">Sellos</span><span class="lang-en hidden">Sigils</span>
+     </button>
+     <button class="tab-btn px-6 py-3 rounded-t-lg bg-slate-800 text-slate-300 hover:bg-slate-700 transition-colors font-medium border border-slate-700 border-b-0" data-tab="relics" onclick="switchTab('relics')">
+         <span class="lang-es">Reliquias</span><span class="lang-en hidden">Relics</span>
+     </button>
+     <button class="tab-btn px-6 py-3 rounded-t-lg bg-slate-800 text-slate-300 hover:bg-slate-700 transition-colors font-medium border border-slate-700 border-b-0" data-tab="bags" onclick="switchTab('bags')">
+         <span class="lang-es">Bolsas</span><span class="lang-en hidden">Bags</span>
+     </button>
+     <button class="tab-btn px-6 py-3 rounded-t-lg bg-slate-800 text-slate-300 hover:bg-slate-700 transition-colors font-medium border border-slate-700 border-b-0" data-tab="shopping" onclick="switchTab('shopping')">
+         <span class="lang-es">Lista de Compras</span><span class="lang-en hidden">Shopping List</span>
+     </button>
+ </div>
 
-<div id="tab-runes" class="tab-content hidden bg-slate-800 rounded-b-lg rounded-tr-lg border border-slate-700 p-6 min-h-[400px]">
-<div class="overflow-x-auto">
-<table class="w-full text-left border-collapse min-w-[900px]">
-<thead>
-<tr class="bg-slate-900 text-amber-400 text-xs uppercase tracking-wider">
-<th class="p-3 border-b border-slate-700"><span class="lang-es">Icono</span><span class="lang-en hidden">Icon</span></th>
-<th class="p-3 border-b border-slate-700"><span class="lang-es">Nombre</span><span class="lang-en hidden">Name</span></th>
-<th class="p-3 border-b border-slate-700"><span class="lang-es">Precio Venta</span><span class="lang-en hidden">Sell Price</span></th>
-<th class="p-3 border-b border-slate-700 text-center"><span class="lang-es">Ventas Sugeridas/Día</span><span class="lang-en hidden">Sales Suggested/Day</span></th>
-<th class="p-3 border-b border-slate-700"><span class="lang-es">Ganancia/Unidad</span><span class="lang-en hidden">Profit/Unit</span></th>
-<th class="p-3 border-b border-slate-700 text-center"><span class="lang-es">Crafting (Cant)</span><span class="lang-en hidden">Crafting (Qty)</span></th>
-<th class="p-3 border-b border-slate-700"><span class="lang-es">Ganancia Total</span><span class="lang-en hidden">Total Profit</span></th>
-</tr>
-</thead>
-<tbody id="runesBody" class="divide-y divide-slate-700"></tbody>
-</table>
-</div>
-<div class="flex justify-end gap-3 mt-6 pt-4 border-t border-slate-700">
-<button class="btn-nav px-4 py-2 bg-slate-700 hover:bg-slate-600 rounded text-sm transition-colors" onclick="prevTab()"><span class="lang-es">Anterior</span><span class="lang-en hidden">Prev</span></button>
-<button class="btn-nav px-4 py-2 bg-slate-700 hover:bg-slate-600 rounded text-sm transition-colors" onclick="nextTab()"><span class="lang-es">Siguiente</span><span class="lang-en hidden">Next</span></button>
-<button class="btn-nav-primary px-4 py-2 bg-amber-500 hover:bg-amber-600 text-slate-900 font-bold rounded text-sm transition-colors" onclick="switchTab('shopping')"><span class="lang-es">Ir a Lista de Compras</span><span class="lang-en hidden">Go to Shopping List</span></button>
-</div>
-</div>
+ <div id="loading" class="text-center py-12 text-amber-400 text-xl hidden">
+     <p class="lang-es">Cargando recetas y calculando costos...</p>
+     <p class="lang-en hidden">Loading recipes and calculating costs...</p>
+ </div>
+ <div id="error" class="text-center py-6 text-red-400 bg-red-900/20 border border-red-800 rounded-lg hidden"></div>
 
-<div id="tab-sigils" class="tab-content hidden bg-slate-800 rounded-b-lg rounded-tr-lg border border-slate-700 p-6 min-h-[400px]">
-<div class="overflow-x-auto">
-<table class="w-full text-left border-collapse min-w-[900px]">
-<thead>
-<tr class="bg-slate-900 text-amber-400 text-xs uppercase tracking-wider">
-<th class="p-3 border-b border-slate-700"><span class="lang-es">Icono</span><span class="lang-en hidden">Icon</span></th>
-<th class="p-3 border-b border-slate-700"><span class="lang-es">Nombre</span><span class="lang-en hidden">Name</span></th>
-<th class="p-3 border-b border-slate-700"><span class="lang-es">Precio Venta</span><span class="lang-en hidden">Sell Price</span></th>
-<th class="p-3 border-b border-slate-700 text-center"><span class="lang-es">Ventas Sugeridas/Día</span><span class="lang-en hidden">Sales Suggested/Day</span></th>
-<th class="p-3 border-b border-slate-700"><span class="lang-es">Ganancia/Unidad</span><span class="lang-en hidden">Profit/Unit</span></th>
-<th class="p-3 border-b border-slate-700 text-center"><span class="lang-es">Crafting (Cant)</span><span class="lang-en hidden">Crafting (Qty)</span></th>
-<th class="p-3 border-b border-slate-700"><span class="lang-es">Ganancia Total</span><span class="lang-en hidden">Total Profit</span></th>
-</tr>
-</thead>
-<tbody id="sigilsBody" class="divide-y divide-slate-700"></tbody>
-</table>
-</div>
-<div class="flex justify-end gap-3 mt-6 pt-4 border-t border-slate-700">
-<button class="btn-nav px-4 py-2 bg-slate-700 hover:bg-slate-600 rounded text-sm transition-colors" onclick="prevTab()"><span class="lang-es">Anterior</span><span class="lang-en hidden">Prev</span></button>
-<button class="btn-nav px-4 py-2 bg-slate-700 hover:bg-slate-600 rounded text-sm transition-colors" onclick="nextTab()"><span class="lang-es">Siguiente</span><span class="lang-en hidden">Next</span></button>
-<button class="btn-nav-primary px-4 py-2 bg-amber-500 hover:bg-amber-600 text-slate-900 font-bold rounded text-sm transition-colors" onclick="switchTab('shopping')"><span class="lang-es">Ir a Lista de Compras</span><span class="lang-en hidden">Go to Shopping List</span></button>
-</div>
-</div>
+ <!-- tabla de runas -->
+ <div id="tab-runes" class="tab-content hidden bg-slate-800 rounded-b-lg rounded-tr-lg border border-slate-700 p-6 min-h-[400px]">
+     <div class="overflow-x-auto">
+         <table class="w-full text-left border-collapse min-w-[900px]">
+             <thead>
+                 <tr class="bg-slate-900 text-amber-400 text-xs uppercase tracking-wider">
+                     <th class="p-3 border-b border-slate-700"><span class="lang-es">Icono</span><span class="lang-en hidden">Icon</span></th>
+                     <th class="p-3 border-b border-slate-700"><span class="lang-es">Nombre</span><span class="lang-en hidden">Name</span></th>
+                     <th class="p-3 border-b border-slate-700"><span class="lang-es">Precio Venta</span><span class="lang-en hidden">Sell Price</span></th>
+                     <th class="p-3 border-b border-slate-700 text-center"><span class="lang-es">Ventas Sugeridas/Día</span><span class="lang-en hidden">Sales Suggested/Day</span></th>
+                     <th class="p-3 border-b border-slate-700"><span class="lang-es">Ganancia/Unidad</span><span class="lang-en hidden">Profit/Unit</span></th>
+                     <th class="p-3 border-b border-slate-700 text-center"><span class="lang-es">Crafting (Cant)</span><span class="lang-en hidden">Crafting (Qty)</span></th>
+                     <th class="p-3 border-b border-slate-700"><span class="lang-es">Ganancia Total</span><span class="lang-en hidden">Total Profit</span></th>
+                 </tr>
+             </thead>
+             <tbody id="runesBody" class="divide-y divide-slate-700"></tbody>
+         </table>
+     </div>
+     <div class="flex justify-end gap-3 mt-6 pt-4 border-t border-slate-700">
+         <button class="btn-nav px-4 py-2 bg-slate-700 hover:bg-slate-600 rounded text-sm transition-colors" onclick="prevTab()"><span class="lang-es">Anterior</span><span class="lang-en hidden">Prev</span></button>
+         <button class="btn-nav px-4 py-2 bg-slate-700 hover:bg-slate-600 rounded text-sm transition-colors" onclick="nextTab()"><span class="lang-es">Siguiente</span><span class="lang-en hidden">Next</span></button>
+         <button class="btn-nav-primary px-4 py-2 bg-amber-500 hover:bg-amber-600 text-slate-900 font-bold rounded text-sm transition-colors" onclick="switchTab('shopping')"><span class="lang-es">Ir a Lista de Compras</span><span class="lang-en hidden">Go to Shopping List</span></button>
+     </div>
+ </div>
 
-<div id="tab-relics" class="tab-content hidden bg-slate-800 rounded-b-lg rounded-tr-lg border border-slate-700 p-6 min-h-[400px]">
-<div class="overflow-x-auto">
-<table class="w-full text-left border-collapse min-w-[900px]">
-<thead>
-<tr class="bg-slate-900 text-amber-400 text-xs uppercase tracking-wider">
-<th class="p-3 border-b border-slate-700"><span class="lang-es">Icono</span><span class="lang-en hidden">Icon</span></th>
-<th class="p-3 border-b border-slate-700"><span class="lang-es">Nombre</span><span class="lang-en hidden">Name</span></th>
-<th class="p-3 border-b border-slate-700"><span class="lang-es">Precio Venta</span><span class="lang-en hidden">Sell Price</span></th>
-<th class="p-3 border-b border-slate-700 text-center"><span class="lang-es">Ventas Sugeridas/Día</span><span class="lang-en hidden">Sales Suggested/Day</span></th>
-<th class="p-3 border-b border-slate-700"><span class="lang-es">Ganancia/Unidad</span><span class="lang-en hidden">Profit/Unit</span></th>
-<th class="p-3 border-b border-slate-700 text-center"><span class="lang-es">Crafting (Cant)</span><span class="lang-en hidden">Crafting (Qty)</span></th>
-<th class="p-3 border-b border-slate-700"><span class="lang-es">Ganancia Total</span><span class="lang-en hidden">Total Profit</span></th>
-</tr>
-</thead>
-<tbody id="relicsBody" class="divide-y divide-slate-700"></tbody>
-</table>
-</div>
-<div class="flex justify-end gap-3 mt-6 pt-4 border-t border-slate-700">
-<button class="btn-nav px-4 py-2 bg-slate-700 hover:bg-slate-600 rounded text-sm transition-colors" onclick="prevTab()"><span class="lang-es">Anterior</span><span class="lang-en hidden">Prev</span></button>
-<button class="btn-nav px-4 py-2 bg-slate-700 hover:bg-slate-600 rounded text-sm transition-colors" onclick="nextTab()"><span class="lang-es">Siguiente</span><span class="lang-en hidden">Next</span></button>
-<button class="btn-nav-primary px-4 py-2 bg-amber-500 hover:bg-amber-600 text-slate-900 font-bold rounded text-sm transition-colors" onclick="switchTab('shopping')"><span class="lang-es">Ir a Lista de Compras</span><span class="lang-en hidden">Go to Shopping List</span></button>
-</div>
-</div>
+ <!-- tabla de sellos -->
+ <div id="tab-sigils" class="tab-content hidden bg-slate-800 rounded-b-lg rounded-tr-lg border border-slate-700 p-6 min-h-[400px]">
+     <div class="overflow-x-auto">
+         <table class="w-full text-left border-collapse min-w-[900px]">
+             <thead>
+                 <tr class="bg-slate-900 text-amber-400 text-xs uppercase tracking-wider">
+                     <th class="p-3 border-b border-slate-700"><span class="lang-es">Icono</span><span class="lang-en hidden">Icon</span></th>
+                     <th class="p-3 border-b border-slate-700"><span class="lang-es">Nombre</span><span class="lang-en hidden">Name</span></th>
+                     <th class="p-3 border-b border-slate-700"><span class="lang-es">Precio Venta</span><span class="lang-en hidden">Sell Price</span></th>
+                     <th class="p-3 border-b border-slate-700 text-center"><span class="lang-es">Ventas Sugeridas/Día</span><span class="lang-en hidden">Sales Suggested/Day</span></th>
+                     <th class="p-3 border-b border-slate-700"><span class="lang-es">Ganancia/Unidad</span><span class="lang-en hidden">Profit/Unit</span></th>
+                     <th class="p-3 border-b border-slate-700 text-center"><span class="lang-es">Crafting (Cant)</span><span class="lang-en hidden">Crafting (Qty)</span></th>
+                     <th class="p-3 border-b border-slate-700"><span class="lang-es">Ganancia Total</span><span class="lang-en hidden">Total Profit</span></th>
+                 </tr>
+             </thead>
+             <tbody id="sigilsBody" class="divide-y divide-slate-700"></tbody>
+         </table>
+     </div>
+     <div class="flex justify-end gap-3 mt-6 pt-4 border-t border-slate-700">
+         <button class="btn-nav px-4 py-2 bg-slate-700 hover:bg-slate-600 rounded text-sm transition-colors" onclick="prevTab()"><span class="lang-es">Anterior</span><span class="lang-en hidden">Prev</span></button>
+         <button class="btn-nav px-4 py-2 bg-slate-700 hover:bg-slate-600 rounded text-sm transition-colors" onclick="nextTab()"><span class="lang-es">Siguiente</span><span class="lang-en hidden">Next</span></button>
+         <button class="btn-nav-primary px-4 py-2 bg-amber-500 hover:bg-amber-600 text-slate-900 font-bold rounded text-sm transition-colors" onclick="switchTab('shopping')"><span class="lang-es">Ir a Lista de Compras</span><span class="lang-en hidden">Go to Shopping List</span></button>
+     </div>
+ </div>
 
-<div id="tab-bags" class="tab-content hidden bg-slate-800 rounded-b-lg rounded-tr-lg border border-slate-700 p-6 min-h-[400px]">
-<div class="overflow-x-auto">
-<table class="w-full text-left border-collapse min-w-[900px]">
-<thead>
-<tr class="bg-slate-900 text-amber-400 text-xs uppercase tracking-wider">
-<th class="p-3 border-b border-slate-700"><span class="lang-es">Icono</span><span class="lang-en hidden">Icon</span></th>
-<th class="p-3 border-b border-slate-700"><span class="lang-es">Nombre</span><span class="lang-en hidden">Name</span></th>
-<th class="p-3 border-b border-slate-700"><span class="lang-es">Precio Venta</span><span class="lang-en hidden">Sell Price</span></th>
-<th class="p-3 border-b border-slate-700 text-center"><span class="lang-es">Ventas Sugeridas/Día</span><span class="lang-en hidden">Sales Suggested/Day</span></th>
-<th class="p-3 border-b border-slate-700"><span class="lang-es">Ganancia/Unidad</span><span class="lang-en hidden">Profit/Unit</span></th>
-<th class="p-3 border-b border-slate-700 text-center"><span class="lang-es">Crafting (Cant)</span><span class="lang-en hidden">Crafting (Qty)</span></th>
-<th class="p-3 border-b border-slate-700"><span class="lang-es">Ganancia Total</span><span class="lang-en hidden">Total Profit</span></th>
-</tr>
-</thead>
-<tbody id="bagsBody" class="divide-y divide-slate-700"></tbody>
-</table>
-</div>
-<div class="flex justify-end gap-3 mt-6 pt-4 border-t border-slate-700">
-<button class="btn-nav px-4 py-2 bg-slate-700 hover:bg-slate-600 rounded text-sm transition-colors" onclick="prevTab()"><span class="lang-es">Anterior</span><span class="lang-en hidden">Prev</span></button>
-<button class="btn-nav px-4 py-2 bg-slate-700 hover:bg-slate-600 rounded text-sm transition-colors" onclick="nextTab()"><span class="lang-es">Siguiente</span><span class="lang-en hidden">Next</span></button>
-<button class="btn-nav-primary px-4 py-2 bg-amber-500 hover:bg-amber-600 text-slate-900 font-bold rounded text-sm transition-colors" onclick="switchTab('shopping')"><span class="lang-es">Ir a Lista de Compras</span><span class="lang-en hidden">Go to Shopping List</span></button>
-</div>
-</div>
+ <!-- tabla de reliquias -->
+ <div id="tab-relics" class="tab-content hidden bg-slate-800 rounded-b-lg rounded-tr-lg border border-slate-700 p-6 min-h-[400px]">
+     <div class="overflow-x-auto">
+         <table class="w-full text-left border-collapse min-w-[900px]">
+             <thead>
+                 <tr class="bg-slate-900 text-amber-400 text-xs uppercase tracking-wider">
+                     <th class="p-3 border-b border-slate-700"><span class="lang-es">Icono</span><span class="lang-en hidden">Icon</span></th>
+                     <th class="p-3 border-b border-slate-700"><span class="lang-es">Nombre</span><span class="lang-en hidden">Name</span></th>
+                     <th class="p-3 border-b border-slate-700"><span class="lang-es">Precio Venta</span><span class="lang-en hidden">Sell Price</span></th>
+                     <th class="p-3 border-b border-slate-700 text-center"><span class="lang-es">Ventas Sugeridas/Día</span><span class="lang-en hidden">Sales Suggested/Day</span></th>
+                     <th class="p-3 border-b border-slate-700"><span class="lang-es">Ganancia/Unidad</span><span class="lang-en hidden">Profit/Unit</span></th>
+                     <th class="p-3 border-b border-slate-700 text-center"><span class="lang-es">Crafting (Cant)</span><span class="lang-en hidden">Crafting (Qty)</span></th>
+                     <th class="p-3 border-b border-slate-700"><span class="lang-es">Ganancia Total</span><span class="lang-en hidden">Total Profit</span></th>
+                 </tr>
+             </thead>
+             <tbody id="relicsBody" class="divide-y divide-slate-700"></tbody>
+         </table>
+     </div>
+     <div class="flex justify-end gap-3 mt-6 pt-4 border-t border-slate-700">
+         <button class="btn-nav px-4 py-2 bg-slate-700 hover:bg-slate-600 rounded text-sm transition-colors" onclick="prevTab()"><span class="lang-es">Anterior</span><span class="lang-en hidden">Prev</span></button>
+         <button class="btn-nav px-4 py-2 bg-slate-700 hover:bg-slate-600 rounded text-sm transition-colors" onclick="nextTab()"><span class="lang-es">Siguiente</span><span class="lang-en hidden">Next</span></button>
+         <button class="btn-nav-primary px-4 py-2 bg-amber-500 hover:bg-amber-600 text-slate-900 font-bold rounded text-sm transition-colors" onclick="switchTab('shopping')"><span class="lang-es">Ir a Lista de Compras</span><span class="lang-en hidden">Go to Shopping List</span></button>
+     </div>
+ </div>
 
-<div id="tab-shopping" class="tab-content hidden bg-slate-800 rounded-b-lg rounded-tr-lg border border-slate-700 p-6 min-h-[400px]">
-<div class="flex flex-wrap gap-8 p-4 bg-slate-900 rounded-lg mb-6">
-<div class="flex flex-col">
-<span class="text-xs text-slate-400 lang-es">Ganancia Total</span>
-<span class="text-xs text-slate-400 lang-en hidden">Total Profit</span>
-<span class="text-2xl font-bold text-amber-400" id="sumProfit">0G 00S 00C</span>
-</div>
-<div class="flex flex-col">
-<span class="text-xs text-slate-400 lang-es">Costo de Crafting</span>
-<span class="text-xs text-slate-400 lang-en hidden">Crafting Cost</span>
-<span class="text-2xl font-bold text-slate-200" id="sumCost">0G 00S 00C</span>
-</div>
-<div class="flex flex-col">
-<span class="text-xs text-slate-400">ROI</span>
-<span class="text-2xl font-bold text-slate-200" id="sumROI">0.00%</span>
-</div>
-</div>
-<div id="shoppingListContainer" class="space-y-3">
-<div class="text-center py-10 text-slate-400 lang-es">Ingresa cantidades en las pestañas de categorías y haz clic en "Ir a Lista de Compras"</div>
-<div class="text-center py-10 text-slate-400 lang-en hidden">Enter quantities in the category tabs and click "Go to Shopping List"</div>
-</div>
-<div class="flex justify-end gap-3 mt-6 pt-4 border-t border-slate-700">
-<button class="btn-nav px-4 py-2 bg-slate-700 hover:bg-slate-600 rounded text-sm transition-colors" onclick="prevTab()"><span class="lang-es">Anterior</span><span class="lang-en hidden">Prev</span></button>
-<button class="btn-nav px-4 py-2 bg-slate-700 hover:bg-slate-600 rounded text-sm transition-colors" onclick="nextTab()"><span class="lang-es">Siguiente</span><span class="lang-en hidden">Next</span></button>
-</div>
-</div>
-</main>
+ <!-- tabla de bolsas de inventario -->
+ <div id="tab-bags" class="tab-content hidden bg-slate-800 rounded-b-lg rounded-tr-lg border border-slate-700 p-6 min-h-[400px]">
+     <div class="overflow-x-auto">
+         <table class="w-full text-left border-collapse min-w-[900px]">
+             <thead>
+                 <tr class="bg-slate-900 text-amber-400 text-xs uppercase tracking-wider">
+                     <th class="p-3 border-b border-slate-700"><span class="lang-es">Icono</span><span class="lang-en hidden">Icon</span></th>
+                     <th class="p-3 border-b border-slate-700"><span class="lang-es">Nombre</span><span class="lang-en hidden">Name</span></th>
+                     <th class="p-3 border-b border-slate-700"><span class="lang-es">Precio Venta</span><span class="lang-en hidden">Sell Price</span></th>
+                     <th class="p-3 border-b border-slate-700 text-center"><span class="lang-es">Ventas Sugeridas/Día</span><span class="lang-en hidden">Sales Suggested/Day</span></th>
+                     <th class="p-3 border-b border-slate-700"><span class="lang-es">Ganancia/Unidad</span><span class="lang-en hidden">Profit/Unit</span></th>
+                     <th class="p-3 border-b border-slate-700 text-center"><span class="lang-es">Crafting (Cant)</span><span class="lang-en hidden">Crafting (Qty)</span></th>
+                     <th class="p-3 border-b border-slate-700"><span class="lang-es">Ganancia Total</span><span class="lang-en hidden">Total Profit</span></th>
+                 </tr>
+             </thead>
+             <tbody id="bagsBody" class="divide-y divide-slate-700"></tbody>
+         </table>
+     </div>
+     <div class="flex justify-end gap-3 mt-6 pt-4 border-t border-slate-700">
+         <button class="btn-nav px-4 py-2 bg-slate-700 hover:bg-slate-600 rounded text-sm transition-colors" onclick="prevTab()"><span class="lang-es">Anterior</span><span class="lang-en hidden">Prev</span></button>
+         <button class="btn-nav px-4 py-2 bg-slate-700 hover:bg-slate-600 rounded text-sm transition-colors" onclick="nextTab()"><span class="lang-es">Siguiente</span><span class="lang-en hidden">Next</span></button>
+         <button class="btn-nav-primary px-4 py-2 bg-amber-500 hover:bg-amber-600 text-slate-900 font-bold rounded text-sm transition-colors" onclick="switchTab('shopping')"><span class="lang-es">Ir a Lista de Compras</span><span class="lang-en hidden">Go to Shopping List</span></button>
+     </div>
+ </div>
+
+ <!-- lista de compra -->
+ <div id="tab-shopping" class="tab-content hidden bg-slate-800 rounded-b-lg rounded-tr-lg border border-slate-700 p-6 min-h-[400px]">
+     <div class="flex flex-wrap gap-8 p-4 bg-slate-900 rounded-lg mb-6">
+         <div class="flex flex-col">
+             <span class="text-xs text-slate-400 lang-es">Ganancia Total</span>
+             <span class="text-xs text-slate-400 lang-en hidden">Total Profit</span>
+             <span class="text-2xl font-bold text-amber-400" id="sumProfit">0G 00S 00C</span>
+         </div>
+         <div class="flex flex-col">
+             <span class="text-xs text-slate-400 lang-es">Costo de Crafting</span>
+             <span class="text-xs text-slate-400 lang-en hidden">Crafting Cost</span>
+             <span class="text-2xl font-bold text-slate-200" id="sumCost">0G 00S 00C</span>
+         </div>
+         <div class="flex flex-col">
+             <span class="text-xs text-slate-400">ROI</span>
+             <span class="text-2xl font-bold text-slate-200" id="sumROI">0.00%</span>
+         </div>
+     </div>
+     <div id="shoppingListContainer" class="space-y-3">
+         <div class="text-center py-10 text-slate-400 lang-es">Ingresa cantidades en las pestañas de categorías y haz clic en "Ir a Lista de Compras"</div>
+         <div class="text-center py-10 text-slate-400 lang-en hidden">Enter quantities in the category tabs and click "Go to Shopping List"</div>
+     </div>
+     <div class="flex justify-end gap-3 mt-6 pt-4 border-t border-slate-700">
+         <button class="btn-nav px-4 py-2 bg-slate-700 hover:bg-slate-600 rounded text-sm transition-colors" onclick="prevTab()"><span class="lang-es">Anterior</span><span class="lang-en hidden">Prev</span></button>
+         <button class="btn-nav px-4 py-2 bg-slate-700 hover:bg-slate-600 rounded text-sm transition-colors" onclick="nextTab()"><span class="lang-es">Siguiente</span><span class="lang-en hidden">Next</span></button>
+     </div>
+ </div>
+ </main>
 
     <!-- Footer Component -->
  <footer class="bg-slate-800 border-t border-slate-700 py-12 mt-auto">
@@ -238,11 +256,11 @@ input[type="number"]::-webkit-outer-spin-button { -webkit-appearance: none; marg
                  <h3 class="text-lg font-semibold text-white mb-4 lang-en hidden">Community</h3>
                  <ul class="space-y-2 mb-6">
                      <li>
-                         <a href="https://discord.gg/J8N7ZvZZxw" target="_blank" class="inline-flex items-center px-4 py-2 bg-indigo-600 hover:bg-indigo-700 text-white rounded-lg transition-colors lang-es">
+                         <a href="https://discord.gg/2UjuNJ8nhZ" target="_blank" class="inline-flex items-center px-4 py-2 bg-indigo-600 hover:bg-indigo-700 text-white rounded-lg transition-colors lang-es">
                              <svg class="w-5 h-5 mr-2" fill="currentColor" viewBox="0 0 24 24"><path d="M20.317 4.37a19.791 19.791 0 0 0-4.885-1.515.074.074 0 0 0-.079.037c-.21.375-.444.864-.608 1.25a18.27 18.27 0 0 0-5.487 0 12.64 12.64 0 0 0-.617-1.25.077.077 0 0 0-.079-.037A19.736 19.736 0 0 0 3.677 4.37a.07.07 0 0 0-.032.027C.533 9.046-.32 13.58.099 18.057a.082.082 0 0 0 .031.057 19.9 19.9 0 0 0 5.993 3.03.078.078 0 0 0 .084-.028 14.09 14.09 0 0 0 1.226-1.994.076.076 0 0 0-.041-.106 13.107 13.107 0 0 1-1.872-.892.077.077 0 0 1-.008-.128 10.2 10.2 0 0 0 .372-.292.074.074 0 0 1 .077-.01c3.928 1.793 8.18 1.793 12.062 0a.074.074 0 0 1 .078.01c.12.098.246.198.373.292a.077.077 0 0 1-.006.127 12.299 12.299 0 0 1-1.873.892.077.077 0 0 0-.041.107c.36.698.772 1.362 1.225 1.993a.076.076 0 0 0 .084.028 19.839 19.839 0 0 0 6.002-3.03.077.077 0 0 0 .032-.054c.5-5.177-.838-9.674-3.549-13.66a.061.061 0 0 0-.031-.03z"/></svg>
                               Discord
                          </a>
-                         <a href="https://discord.gg/J8N7ZvZZxw" target="_blank" class="inline-flex items-center px-4 py-2 bg-indigo-600 hover:bg-indigo-700 text-white rounded-lg transition-colors lang-en hidden">
+                         <a href="https://discord.gg/2UjuNJ8nhZ" target="_blank" class="inline-flex items-center px-4 py-2 bg-indigo-600 hover:bg-indigo-700 text-white rounded-lg transition-colors lang-en hidden">
                              <svg class="w-5 h-5 mr-2" fill="currentColor" viewBox="0 0 24 24"><path d="M20.317 4.37a19.791 19.791 0 0 0-4.885-1.515.074.074 0 0 0-.079.037c-.21.375-.444.864-.608 1.25a18.27 18.27 0 0 0-5.487 0 12.64 12.64 0 0 0-.617-1.25.077.077 0 0 0-.079-.037A19.736 19.736 0 0 0 3.677 4.37a.07.07 0 0 0-.032.027C.533 9.046-.32 13.58.099 18.057a.082.082 0 0 0 .031.057 19.9 19.9 0 0 0 5.993 3.03.078.078 0 0 0 .084-.028 14.09 14.09 0 0 0 1.226-1.994.076.076 0 0 0-.041-.106 13.107 13.107 0 0 1-1.872-.892.077.077 0 0 1-.008-.128 10.2 10.2 0 0 0 .372-.292.074.074 0 0 1 .077-.01c3.928 1.793 8.18 1.793 12.062 0a.074.074 0 0 1 .078.01c.12.098.246.198.373.292a.077.077 0 0 1-.006.127 12.299 12.299 0 0 1-1.873.892.077.077 0 0 0-.041.107c.36.698.772 1.362 1.225 1.993a.076.076 0 0 0 .084.028 19.839 19.839 0 0 0 6.002-3.03.077.077 0 0 0 .032-.054c.5-5.177-.838-9.674-3.549-13.66a.061.061 0 0 0-.031-.03z"/></svg>
                              Discord
                          </a>
@@ -286,571 +304,632 @@ input[type="number"]::-webkit-outer-spin-button { -webkit-appearance: none; marg
      </div>
  </footer>
 
-<script>
-// ============ BILINGUAL SYSTEM ============
-let currentLang = 'es';
-const i18n = {
-es: { 
-  noData: "No hay datos disponibles.", 
-  emptyList: "No hay artículos seleccionados. Ingresa cantidades en las pestañas de categorías.", 
-  buy: "Comprar", 
-  sell: "Vender", 
-  craft: "Craftear", 
-  vendor: "Vendor",
-  unknown: "Desconocido",
-  unknownItem: "Desconocido"
-},
-en: { 
-  noData: "No data available.", 
-  emptyList: "No items selected. Enter quantities in the category tabs.", 
-  buy: "Buy", 
-  sell: "Sell", 
-  craft: "Craft", 
-  vendor: "Vendor",
-  unknown: "Unknown",
-  unknownItem: "Unknown"
-}
-};
-function t(key) { return i18n[currentLang][key] || key; }
+ <script>
 
-async function setLanguage(lang) {
-  currentLang = lang;
-  localStorage.setItem('preferred-language', lang);
-  document.documentElement.lang = lang;
-  
-  // Traducir todos los elementos estáticos
-  document.querySelectorAll('.lang-es').forEach(el => el.classList.toggle('hidden', lang !== 'es'));
-  document.querySelectorAll('.lang-en').forEach(el => el.classList.toggle('hidden', lang !== 'en'));
-  
-  // ⭐ Si ya hay datos cargados, refrescar los items con el nuevo idioma
-  if (itemData.size > 0) {
-    await refreshItemsWithLanguage();
-  }
-}
-
-async function refreshItemsWithLanguage() {
-  const loading = document.getElementById('loading');
-  const wasHidden = loading.classList.contains('hidden');
-  loading.textContent = currentLang === 'es' ? 'Actualizando idioma...' : 'Updating language...';
-  loading.classList.remove('hidden');
-  
-  try {
-    const allIds = Array.from(itemData.keys());
-    
-    for (let i = 0; i < allIds.length; i += 200) {
-      const chunk = allIds.slice(i, i + 200);
-      const idsStr = chunk.join(',');
-      
-      // ⭐ Clave: parámetro lang con el nuevo idioma
-      const items = await fetch(`https://api.guildwars2.com/v2/items?ids=${idsStr}&lang=${currentLang}`).then(r => r.json());
-      
-      items.forEach(item => {
-        if (itemData.has(item.id)) {
-          const existing = itemData.get(item.id);
-          existing.name = item.name;
-          existing.description = item.description;
-          existing.icon = item.icon;
-          existing.level = item.level;
-          existing.rarity = item.rarity;
-          existing.type = item.type;
-          existing.details = item.details;
+ // ============ BILINGUAL SYSTEM ============
+ let currentLang = 'es';
+ const i18n = {
+     es: { 
+         noData: "No hay datos disponibles.", 
+         emptyList: "No hay artículos seleccionados. Ingresa cantidades en las pestañas de categorías.", 
+         buy: "Comprar", 
+         sell: "Vender", 
+         craft: "Craftear", 
+         vendor: "Vendor",
+         unknown: "Desconocido",
+         unknownItem: "Desconocido"
+        },
+     en: { 
+         noData: "No data available.", 
+         emptyList: "No items selected. Enter quantities in the category tabs.", 
+         buy: "Buy", 
+         sell: "Sell", 
+         craft: "Craft", 
+         vendor: "Vendor",
+         unknown: "Unknown",
+         unknownItem: "Unknown"
         }
-      });
+   };
+ function t(key) { return i18n[currentLang][key] || key; }
+
+ async function setLanguage(lang) {
+     currentLang = lang;
+     localStorage.setItem('preferred-language', lang);
+     document.documentElement.lang = lang;
+  
+     // Traducir todos los elementos estáticos
+     document.querySelectorAll('.lang-es').forEach(el => el.classList.toggle('hidden', lang !== 'es'));
+     document.querySelectorAll('.lang-en').forEach(el => el.classList.toggle('hidden', lang !== 'en'));
+  
+     //  ⭐ Si ya hay datos cargados, refrescar los items con el nuevo idioma
+     if (itemData.size > 0) {
+         await refreshItemsWithLanguage();
+        }
     }
+
+ async function refreshItemsWithLanguage() {
+     const loading = document.getElementById('loading');
+     const wasHidden = loading.classList.contains('hidden');
+     loading.textContent = currentLang === 'es' ? 'Actualizando idioma...' : 'Updating language...';
+     loading.classList.remove('hidden');
+  
+     try {
+         const allIds = Array.from(itemData.keys());
     
-    // Re-procesar categorías con los nuevos nombres (userQuantities se mantiene intacto)
-    categoryData = { runes: [], sigils: [], relics: [], bags: [] };
+         for (let i = 0; i < allIds.length; i += 200) {
+             const chunk = allIds.slice(i, i + 200);
+             const idsStr = chunk.join(',');
+      
+             // ⭐ Clave: parámetro lang con el nuevo idioma
+             const items = await fetch(`https://api.guildwars2.com/v2/items?ids=${idsStr}&lang=${currentLang}`).then(r => r.json());
+      
+             items.forEach(item => {
+             if (itemData.has(item.id)) {
+                 const existing = itemData.get(item.id);
+                 existing.name = item.name;
+                 existing.description = item.description;
+                 existing.icon = item.icon;
+                 existing.level = item.level;
+                 existing.rarity = item.rarity;
+                 existing.type = item.type;
+                 existing.details = item.details;
+                }
+             });
+           }
     
-    await Promise.all([
-      processCategory(RUNE_IDS, 'runes'),
-      processCategory(SEAL_IDS, 'sigils'),
-      processCategory(RELIC_IDS, 'relics'),
-      processCategory(BAG_IDS, 'bags')
-    ]);
+         // Re-procesar categorías con los nuevos nombres (userQuantities se mantiene intacto)
+         categoryData = { runes: [], sigils: [], relics: [], bags: [] };
     
-    renderCategoryTable('runes', 'runesBody');
-    renderCategoryTable('sigils', 'sigilsBody');
-    renderCategoryTable('relics', 'relicsBody');
-    renderCategoryTable('bags', 'bagsBody');
+         await Promise.all([
+             processCategory(RUNE_IDS, 'runes'),
+             processCategory(SEAL_IDS, 'sigils'),
+             processCategory(RELIC_IDS, 'relics'),
+             processCategory(BAG_IDS, 'bags')
+            ]);
     
-    if (!document.getElementById('tab-shopping').classList.contains('hidden')) {
-      await buildShoppingList();
+         renderCategoryTable('runes', 'runesBody');
+         renderCategoryTable('sigils', 'sigilsBody');
+         renderCategoryTable('relics', 'relicsBody');
+         renderCategoryTable('bags', 'bagsBody');
+    
+         if (!document.getElementById('tab-shopping').classList.contains('hidden')) {
+             await buildShoppingList();
+           }
+    
+        } catch (e) 
+        {
+            console.error('Error refreshing items with new language:', e);
+            const errorDiv = document.getElementById('error');
+            errorDiv.textContent = `Error updating language: ${e.message}`;
+            errorDiv.classList.remove('hidden');
+            setTimeout(() => { errorDiv.classList.add('hidden'); }, 5000);
+        } 
+        finally {
+         if (wasHidden) loading.classList.add('hidden');
+        }
     }
+
+ // ============ ORIGINAL FUNCTIONALITY ============
+ const RUNE_IDS = [24830, 70450, 44956, 24815, 24806, 24839, 44957, 70829, 74978, 71425, 24824, 76166, 36044, 24836, 24833, 76100, 24756, 44951, 24821, 68437, 69370, 24762, 38206, 24803, 71276, 49460, 89999, 82791, 85713, 83338, 84749, 24800, 82633, 24812, 24818, 81091, 84127, 83663, 73399, 72852, 83964, 83502, 83423, 24732, 24703, 24741, 24735, 24729, 24791, 24726, 24720, 24723, 24691, 24738, 24753, 24702, 24788, 24782, 48907, 24717, 24827, 24750, 24757, 24794, 24687, 24744, 24711, 24714, 24771, 24747, 24797, 24699, 24768, 24688, 24765, 24776, 24708, 24779, 24696];
+ const SEAL_IDS = [24561, 24562, 24599, 24600, 24601, 24602, 24603, 24604, 24605, 24606, 24607, 24608, 24609, 24610, 24611, 24612, 24613, 24614, 24615, 24616, 24617, 24618, 24619, 24620, 24621, 24622, 24623, 24624, 24625, 24626, 24627, 24628, 24629, 24630, 24631, 24632, 24633, 24634, 24635, 24636, 24637, 24638, 24639, 24640, 24641, 24642, 24643, 24644, 24645, 24646, 24647, 24648, 24649, 24650, 24651, 24652, 24653, 24654, 24655, 24656, 24657, 24658, 24659, 24660, 24661, 24662, 24663, 24664, 24665, 24666, 24667, 24668, 24669, 24670, 24671, 24672, 24673, 24674, 24675, 24676, 24677, 24678, 24679, 24865, 24868, 44944, 44947, 44950, 48911, 49457, 68436, 72092, 74326, 81045];
+ const RELIC_IDS = [99965, 100031, 100048, 100063, 100090, 100144, 100148, 100158, 100194, 100219, 100230, 100238, 100311, 100345, 100368, 100385, 100390, 100400, 100403, 100411, 100429, 100435, 100442, 100448, 100450, 100453, 100455, 100479, 100527, 100542, 100561, 100579, 100580, 100614, 100625, 100659, 100676, 100693, 100739, 100752, 100794, 100849, 100893, 100908, 100916, 100924, 100934, 100947, 104241, 104256, 104424, 104501];
+ const BAG_IDS = [9406, 9409, 9411, 9413, 9478, 9480, 9482, 9484, 9486, 9488, 9491, 9494, 9566, 9567, 9569, 9571, 9572, 9574, 9404, 9414, 9416, 9418, 9576, 9581, 9420, 9421, 9422, 9423, 9429, 9430, 9451, 9454, 9459, 9462, 9466, 9468, 9586, 9588, 9589, 9591, 9593, 9594, 9439, 9445, 9449, 9580, 9427, 9585];
+ const VENDOR_PRICES = { 13008: 20000, 13007: 5000, 13010: 496, 13006: 1480, 13009: 100000, 19663: 2504, 19924: 480 };
+ const VENDOR_FORCED_IDS = new Set([13006, 13007, 13008, 13009, 13010, 19924]);
+ const CRAFTABLE_CATEGORIES = new Set([...RUNE_IDS, ...SEAL_IDS, ...RELIC_IDS, ...BAG_IDS]);
+
+ let bagRecipes = new Map(), ingredientRecipes = new Map(), otherRecipes = new Map();
+ let itemData = new Map(), priceData = new Map(), salesData = new Map();
+ let categoryData = { runes: [], sigils: [], relics: [], bags: [] };
+ let userQuantities = { runes: {}, sigils: {}, relics: {}, bags: {} };
+ const TAB_ORDER = ['runes', 'sigils', 'relics', 'bags', 'shopping'];
+ let costCache = new Map(), bagCostCache = new Map();
+
+ function formatCopper(copper) {
+     if (!copper || copper < 0) copper = 0;
+         const g = Math.floor(copper / 10000);
+         const s = Math.floor((copper % 10000) / 100);
+         const c = Math.floor(copper % 100);
+     return `${String(g).padStart(2,'0')}G ${String(s).padStart(2,'0')}S ${String(c).padStart(2,'0')}C`;
+   }
+
+ function parseCSV(text) {
+     const lines = text.trim().split('\n');
+     const recipes = new Map();
+     for (let i = 1; i < lines.length; i++) {
+         const cols = lines[i].split(';');
+         const outputId = parseInt(cols[0]);
+         if (isNaN(outputId)) continue;
+             const ingredients = [];
+         for (let j = 1; j < cols.length; j += 2) {
+             const ingId = parseInt(cols[j]);
+             const ingQty = parseInt(cols[j+1]);
+             if (!isNaN(ingId) && !isNaN(ingQty) && ingQty > 0) ingredients.push({ id: ingId, qty: ingQty });
+           }
+         if (ingredients.length > 0) {
+             if (!recipes.has(outputId)) recipes.set(outputId, []);
+             recipes.get(outputId).push({ ingredients, outputQty: 1 });
+           }
+       }
+     return recipes;
+ }
+
+ async function loadAllRecipes() {
+     try { const r = await fetch('recipes_only_bag.csv'); if (r.ok) bagRecipes = parseCSV(await r.text()); } catch (e) {}
+     try { const r = await fetch('recipes_ingredients.csv'); if (r.ok) ingredientRecipes = parseCSV(await r.text()); } catch (e) {}
+     for (const file of ['recipes_only_runes.csv', 'recipes_only_sigils.csv', 'recipes_only_relics.csv']) {
+         try { const r = await fetch(file); if (r.ok) { const rec = parseCSV(await r.text()); rec.forEach((v, k) => { if (!otherRecipes.has(k)) otherRecipes.set(k, []); otherRecipes.get(k).push(...v); }); } } catch (e) {}
+       }
+   }
+
+ async function loadApiData() {
+     const allIds = new Set([...RUNE_IDS, ...SEAL_IDS, ...RELIC_IDS, ...BAG_IDS]);
+     bagRecipes.forEach(r => r.forEach(rec => rec.ingredients.forEach(ing => allIds.add(ing.id))));
+     ingredientRecipes.forEach(r => r.forEach(rec => rec.ingredients.forEach(ing => allIds.add(ing.id))));
+     otherRecipes.forEach(r => r.forEach(rec => rec.ingredients.forEach(ing => allIds.add(ing.id))));
+
+     const idsArray = Array.from(allIds);
+     for (let i = 0; i < idsArray.length; i += 200) {
+         const chunk = idsArray.slice(i, i + 200).join(',');
+         const [items, prices] = await Promise.all([
+             fetch(`https://api.guildwars2.com/v2/items?ids=${chunk}&lang=${currentLang}`).then(r => r.json()),
+             fetch(`https://api.guildwars2.com/v2/commerce/prices?ids=${chunk}`).then(r => r.json())
+         ]);
+         items.forEach(item => itemData.set(item.id, item));
+         prices.forEach(price => priceData.set(price.id, price));
+        }
+
+     const dw2Res = await fetch('https://api.datawars2.ie/gw2/v1/items/g_csv?fields=id,name,level,rarity,type,buy_price,sell_price,1d_buy_sold,1d_sell_sold,7d_buy_sold,7d_sell_sold');
+     const csvText = await dw2Res.text();
+     const lines = csvText.trim().split('\n');
+     if (lines.length > 1) {
+         const headers = lines[0].split(',').map(h => h.trim().replace(/"/g, '').toLowerCase());
+         const idIdx = headers.indexOf('id');
+         const sellSoldIdx = headers.indexOf('1d_sell_sold');
+         for (let i = 1; i < lines.length; i++) {
+             const cols = lines[i].split(',');
+             if (cols[idIdx]) salesData.set(cols[idIdx], parseFloat(cols[sellSoldIdx]) || 0);
+            }
+       }
+   }
+
+ async function getOptimalCost(itemId, visited = new Set()) {
+     if (costCache.has(itemId)) return costCache.get(itemId);
+     if (visited.has(itemId)) return Infinity;
+     visited.add(itemId);
+     if (VENDOR_FORCED_IDS.has(itemId) && VENDOR_PRICES[itemId] !== undefined) { 
+         costCache.set(itemId, VENDOR_PRICES[itemId]); 
+         return VENDOR_PRICES[itemId]; 
+        }
+     const item = itemData.get(itemId);
+     if (item && item.flags && (item.flags.includes('AccountBound') || item.flags.includes('AccountBindOnUse') || item.flags.includes('SoulbindOnAcquire') || item.flags.includes('SoulBindOnUse'))) { 
+         costCache.set(itemId, 0); 
+         return 0; 
+       }
+     const price = priceData.get(itemId);
+     // CORRECCIÓN: Usar SOLO sells.unit_price (precio real de compra en TP)
+     let tpPrice = price?.sells?.unit_price ?? Infinity;
+     const recipes = ingredientRecipes.get(itemId);
+     let minCraftCost = Infinity;
+     if (recipes && recipes.length > 0) {
+         for (const recipe of recipes) {
+             let currentCraftCost = 0, canCraft = true;
+             for (const ing of recipe.ingredients) {
+                 const ingCost = await getOptimalCost(ing.id, new Set(visited));
+                 if (ingCost === Infinity) { canCraft = false; break; }
+                 currentCraftCost += ingCost * ing.qty;
+                }
+             if (canCraft && currentCraftCost > 0) {
+                 const costPerUnit = currentCraftCost / recipe.outputQty;
+                 if (costPerUnit < minCraftCost) minCraftCost = costPerUnit;
+                }
+           }
+       }
+     let finalCost = Math.min(tpPrice, minCraftCost);
+     if (finalCost !== Infinity) {
+         costCache.set(itemId, finalCost);
+       }
+     return finalCost;
+ }
+
+
+ async function calculateItemCraftCost(itemId) {
+     const recipes = otherRecipes.get(itemId);
+     if (!recipes || recipes.length === 0) return Infinity;
+     let minCost = Infinity;
+     for (const recipe of recipes) {
+         let totalCost = 0, canCraft = true;
+         for (const ing of recipe.ingredients) {
+             const ingCost = await getOptimalCost(ing.id);
+             if (ingCost === Infinity) { canCraft = false; break; }
+             totalCost += ingCost * ing.qty;
+           }
+         if (canCraft && totalCost < minCost) minCost = totalCost;
+       }
+     return minCost;
+ }
+
+
+ // sección de maletas
+
+ async function getBagOptimalCost(itemId, visited = new Set()) {
+     if (bagCostCache.has(itemId)) return bagCostCache.get(itemId);
+         if (visited.has(itemId)) return Infinity;
+         visited.add(itemId);
     
-  } catch (e) {
-    console.error('Error refreshing items with new language:', e);
-    const errorDiv = document.getElementById('error');
-    errorDiv.textContent = `Error updating language: ${e.message}`;
-    errorDiv.classList.remove('hidden');
-    setTimeout(() => { errorDiv.classList.add('hidden'); }, 5000);
-  } finally {
-    if (wasHidden) loading.classList.add('hidden');
-  }
-}
-
-// ============ ORIGINAL FUNCTIONALITY ============
-const RUNE_IDS = [24830, 70450, 44956, 24815, 24806, 24839, 44957, 70829, 74978, 71425, 24824, 76166, 36044, 24836, 24833, 76100, 24756, 44951, 24821, 68437, 69370, 24762, 38206, 24803, 71276, 49460, 89999, 82791, 85713, 83338, 84749, 24800, 82633, 24812, 24818, 81091, 84127, 83663, 73399, 72852, 83964, 83502, 83423, 24732, 24703, 24741, 24735, 24729, 24791, 24726, 24720, 24723, 24691, 24738, 24753, 24702, 24788, 24782, 48907, 24717, 24827, 24750, 24757, 24794, 24687, 24744, 24711, 24714, 24771, 24747, 24797, 24699, 24768, 24688, 24765, 24776, 24708, 24779, 24696];
-const SEAL_IDS = [24561, 24562, 24599, 24600, 24601, 24602, 24603, 24604, 24605, 24606, 24607, 24608, 24609, 24610, 24611, 24612, 24613, 24614, 24615, 24616, 24617, 24618, 24619, 24620, 24621, 24622, 24623, 24624, 24625, 24626, 24627, 24628, 24629, 24630, 24631, 24632, 24633, 24634, 24635, 24636, 24637, 24638, 24639, 24640, 24641, 24642, 24643, 24644, 24645, 24646, 24647, 24648, 24649, 24650, 24651, 24652, 24653, 24654, 24655, 24656, 24657, 24658, 24659, 24660, 24661, 24662, 24663, 24664, 24665, 24666, 24667, 24668, 24669, 24670, 24671, 24672, 24673, 24674, 24675, 24676, 24677, 24678, 24679, 24865, 24868, 44944, 44947, 44950, 48911, 49457, 68436, 72092, 74326, 81045];
-const RELIC_IDS = [99965, 100031, 100048, 100063, 100090, 100144, 100148, 100158, 100194, 100219, 100230, 100238, 100311, 100345, 100368, 100385, 100390, 100400, 100403, 100411, 100429, 100435, 100442, 100448, 100450, 100453, 100455, 100479, 100527, 100542, 100561, 100579, 100580, 100614, 100625, 100659, 100676, 100693, 100739, 100752, 100794, 100849, 100893, 100908, 100916, 100924, 100934, 100947, 104241, 104256, 104424, 104501];
-const BAG_IDS = [9406, 9409, 9411, 9413, 9478, 9480, 9482, 9484, 9486, 9488, 9491, 9494, 9566, 9567, 9569, 9571, 9572, 9574, 9404, 9414, 9416, 9418, 9576, 9581, 9420, 9421, 9422, 9423, 9429, 9430, 9451, 9454, 9459, 9462, 9466, 9468, 9586, 9588, 9589, 9591, 9593, 9594, 9439, 9445, 9449, 9580, 9427, 9585];
-const VENDOR_PRICES = { 13008: 20000, 13007: 5000, 13010: 496, 13006: 1480, 13009: 100000, 19663: 2504, 19924: 480 };
-const VENDOR_FORCED_IDS = new Set([13006, 13007, 13008, 13009, 13010, 19924]);
-const CRAFTABLE_CATEGORIES = new Set([...RUNE_IDS, ...SEAL_IDS, ...RELIC_IDS, ...BAG_IDS]);
-
-let bagRecipes = new Map(), ingredientRecipes = new Map(), otherRecipes = new Map();
-let itemData = new Map(), priceData = new Map(), salesData = new Map();
-let categoryData = { runes: [], sigils: [], relics: [], bags: [] };
-let userQuantities = { runes: {}, sigils: {}, relics: {}, bags: {} };
-const TAB_ORDER = ['runes', 'sigils', 'relics', 'bags', 'shopping'];
-let costCache = new Map(), bagCostCache = new Map();
-
-function formatCopper(copper) {
-if (!copper || copper < 0) copper = 0;
-const g = Math.floor(copper / 10000);
-const s = Math.floor((copper % 10000) / 100);
-const c = Math.floor(copper % 100);
-return `${String(g).padStart(2,'0')}G ${String(s).padStart(2,'0')}S ${String(c).padStart(2,'0')}C`;
-}
-
-function parseCSV(text) {
-const lines = text.trim().split('\n');
-const recipes = new Map();
-for (let i = 1; i < lines.length; i++) {
-const cols = lines[i].split(';');
-const outputId = parseInt(cols[0]);
-if (isNaN(outputId)) continue;
-const ingredients = [];
-for (let j = 1; j < cols.length; j += 2) {
-const ingId = parseInt(cols[j]);
-const ingQty = parseInt(cols[j+1]);
-if (!isNaN(ingId) && !isNaN(ingQty) && ingQty > 0) ingredients.push({ id: ingId, qty: ingQty });
-}
-if (ingredients.length > 0) {
-if (!recipes.has(outputId)) recipes.set(outputId, []);
-recipes.get(outputId).push({ ingredients, outputQty: 1 });
-}
-}
-return recipes;
-}
-
-async function loadAllRecipes() {
-try { const r = await fetch('recipes_only_bag.csv'); if (r.ok) bagRecipes = parseCSV(await r.text()); } catch (e) {}
-try { const r = await fetch('recipes_ingredients.csv'); if (r.ok) ingredientRecipes = parseCSV(await r.text()); } catch (e) {}
-for (const file of ['recipes_only_runes.csv', 'recipes_only_sigils.csv', 'recipes_only_relics.csv']) {
-try { const r = await fetch(file); if (r.ok) { const rec = parseCSV(await r.text()); rec.forEach((v, k) => { if (!otherRecipes.has(k)) otherRecipes.set(k, []); otherRecipes.get(k).push(...v); }); } } catch (e) {}
-}
-}
-
-async function loadApiData() {
-const allIds = new Set([...RUNE_IDS, ...SEAL_IDS, ...RELIC_IDS, ...BAG_IDS]);
-bagRecipes.forEach(r => r.forEach(rec => rec.ingredients.forEach(ing => allIds.add(ing.id))));
-ingredientRecipes.forEach(r => r.forEach(rec => rec.ingredients.forEach(ing => allIds.add(ing.id))));
-otherRecipes.forEach(r => r.forEach(rec => rec.ingredients.forEach(ing => allIds.add(ing.id))));
-
-const idsArray = Array.from(allIds);
-for (let i = 0; i < idsArray.length; i += 200) {
-const chunk = idsArray.slice(i, i + 200).join(',');
-const [items, prices] = await Promise.all([
-fetch(`https://api.guildwars2.com/v2/items?ids=${chunk}&lang=${currentLang}`).then(r => r.json()),
-fetch(`https://api.guildwars2.com/v2/commerce/prices?ids=${chunk}`).then(r => r.json())
-]);
-items.forEach(item => itemData.set(item.id, item));
-prices.forEach(price => priceData.set(price.id, price));
-}
-
-const dw2Res = await fetch('https://api.datawars2.ie/gw2/v1/items/g_csv?fields=id,name,level,rarity,type,buy_price,sell_price,1d_buy_sold,1d_sell_sold,7d_buy_sold,7d_sell_sold');
-const csvText = await dw2Res.text();
-const lines = csvText.trim().split('\n');
-if (lines.length > 1) {
-const headers = lines[0].split(',').map(h => h.trim().replace(/"/g, '').toLowerCase());
-const idIdx = headers.indexOf('id');
-const sellSoldIdx = headers.indexOf('1d_sell_sold');
-for (let i = 1; i < lines.length; i++) {
-const cols = lines[i].split(',');
-if (cols[idIdx]) salesData.set(cols[idIdx], parseFloat(cols[sellSoldIdx]) || 0);
-}
-}
-}
-
-async function getOptimalCost(itemId, visited = new Set()) {
-if (costCache.has(itemId)) return costCache.get(itemId);
-if (visited.has(itemId)) return Infinity;
-visited.add(itemId);
-if (VENDOR_FORCED_IDS.has(itemId) && VENDOR_PRICES[itemId] !== undefined) { costCache.set(itemId, VENDOR_PRICES[itemId]); return VENDOR_PRICES[itemId]; }
-const item = itemData.get(itemId);
-if (item && item.flags && (item.flags.includes('AccountBound') || item.flags.includes('AccountBindOnUse') || item.flags.includes('SoulbindOnAcquire') || item.flags.includes('SoulBindOnUse'))) { costCache.set(itemId, 0); return 0; }
-const price = priceData.get(itemId);
-let tpPrice = Infinity;
-if (price) tpPrice = Math.min(price.buys?.unit_price ?? Infinity, price.sells?.unit_price ?? Infinity);
-const recipes = ingredientRecipes.get(itemId);
-let minCraftCost = Infinity;
-if (recipes && recipes.length > 0) {
-for (const recipe of recipes) {
-let currentCraftCost = 0, canCraft = true;
-for (const ing of recipe.ingredients) {
-const ingCost = await getOptimalCost(ing.id, new Set(visited));
-if (ingCost === Infinity) { canCraft = false; break; }
-currentCraftCost += ingCost * ing.qty;
-}
-if (canCraft && currentCraftCost > 0) {
-const costPerUnit = currentCraftCost / recipe.outputQty;
-if (costPerUnit < minCraftCost) minCraftCost = costPerUnit;
-}
-}
-}
-let finalCost = Math.min(tpPrice, minCraftCost);
-if (finalCost === Infinity) finalCost = 0;
-costCache.set(itemId, finalCost);
-return finalCost;
-}
-
-async function calculateItemCraftCost(itemId) {
-const recipes = otherRecipes.get(itemId);
-if (!recipes || recipes.length === 0) return Infinity;
-let minCost = Infinity;
-for (const recipe of recipes) {
-let totalCost = 0, canCraft = true;
-for (const ing of recipe.ingredients) {
-const ingCost = await getOptimalCost(ing.id);
-if (ingCost === Infinity) { canCraft = false; break; }
-totalCost += ingCost * ing.qty;
-}
-if (canCraft && totalCost < minCost) minCost = totalCost;
-}
-return minCost;
-}
-
-async function getBagOptimalCost(itemId, visited = new Set()) {
-if (bagCostCache.has(itemId)) return bagCostCache.get(itemId);
-if (visited.has(itemId)) return Infinity;
-visited.add(itemId);
-const item = itemData.get(itemId);
-if (item && item.flags && (item.flags.includes('AccountBound') || item.flags.includes('AccountBindOnUse') || item.flags.includes('SoulbindOnAcquire') || item.flags.includes('SoulBindOnUse'))) { bagCostCache.set(itemId, 0); return 0; }
-const price = priceData.get(itemId);
-let tpPrice = Infinity;
-if (price) tpPrice = Math.min(price.buys?.unit_price ?? Infinity, price.sells?.unit_price ?? Infinity);
-const recipes = ingredientRecipes.get(itemId);
-let minCraftCost = Infinity;
-if (recipes && recipes.length > 0) {
-for (const recipe of recipes) {
-let currentCraftCost = 0, canCraft = true;
-for (const ing of recipe.ingredients) {
-const ingCost = await getBagOptimalCost(ing.id, new Set(visited));
-if (ingCost === Infinity) { canCraft = false; break; }
-currentCraftCost += ingCost * ing.qty;
-}
-if (canCraft && currentCraftCost > 0) {
-const costPerUnit = currentCraftCost / recipe.outputQty;
-if (costPerUnit < minCraftCost) minCraftCost = costPerUnit;
-}
-}
-}
-let finalCost = Math.min(tpPrice, minCraftCost);
-if (finalCost === Infinity) finalCost = 0;
-bagCostCache.set(itemId, finalCost);
-return finalCost;
+         // ✅ AGREGADO: Verificar VENDOR_FORCED_IDS (igual que getOptimalCost)
+         if (VENDOR_FORCED_IDS.has(itemId) && VENDOR_PRICES[itemId] !== undefined) { 
+             bagCostCache.set(itemId, VENDOR_PRICES[itemId]); 
+             return VENDOR_PRICES[itemId]; 
+           }
+    
+         const item = itemData.get(itemId);
+         if (item && item.flags && (item.flags.includes('AccountBound') || item.flags.includes('AccountBindOnUse') || item.flags.includes('SoulbindOnAcquire') || item.flags.includes('SoulBindOnUse'))) {
+             bagCostCache.set(itemId, 0);
+             return 0;
+           }
+    
+         const price = priceData.get(itemId);
+         // ✅ Usar sells.unit_price (precio de compra instantánea en TP)
+         let tpPrice = price?.sells?.unit_price ?? Infinity;
+    
+         const recipes = ingredientRecipes.get(itemId);
+         let minCraftCost = Infinity;
+    
+         if (recipes && recipes.length > 0) {
+             for (const recipe of recipes) {
+                 let currentCraftCost = 0, canCraft = true;
+                 for (const ing of recipe.ingredients) {
+                     const ingCost = await getBagOptimalCost(ing.id, new Set(visited));
+                     if (ingCost === Infinity) { canCraft = false; break; }
+                        currentCraftCost += ingCost * ing.qty;
+                   }
+                 if (canCraft && currentCraftCost > 0) {
+                     const costPerUnit = currentCraftCost / recipe.outputQty;
+                     if (costPerUnit < minCraftCost) minCraftCost = costPerUnit;
+                   }
+               }
+           }
+    
+         let finalCost = Math.min(tpPrice, minCraftCost);
+         if (finalCost === Infinity) finalCost = 0;
+         bagCostCache.set(itemId, finalCost);
+         return finalCost;
 }
 
 async function calculateBagCraftCost(bagId) {
-const recipes = bagRecipes.get(bagId);
-if (!recipes || recipes.length === 0) return Infinity;
-let minCost = Infinity;
-for (const recipe of recipes) {
-let totalCost = 0, canCraft = true;
-for (const ing of recipe.ingredients) {
-const ingCost = await getBagOptimalCost(ing.id);
-if (ingCost === Infinity) { canCraft = false; break; }
-totalCost += ingCost * ing.qty;
-}
-if (canCraft && totalCost < minCost) minCost = totalCost;
-}
-return minCost;
+    const recipes = bagRecipes.get(bagId);
+    if (!recipes || recipes.length === 0) return Infinity;
+    
+    let minCost = Infinity;
+    for (const recipe of recipes) {
+        let totalCost = 0, canCraft = true;
+        for (const ing of recipe.ingredients) {
+            const ingCost = await getBagOptimalCost(ing.id);
+            if (ingCost === Infinity) { canCraft = false; break; }
+            totalCost += ingCost * ing.qty;
+        }
+        if (canCraft && totalCost < minCost) minCost = totalCost;
+    }
+    return minCost;
 }
 
 async function processCategory(ids, categoryKey) {
-const results = [];
-for (const id of ids) {
-const item = itemData.get(id);
-const price = priceData.get(id);
-const sellPrice = price?.sells?.unit_price || 0;
-let craftCost = categoryKey === 'bags' ? await calculateBagCraftCost(id) : await calculateItemCraftCost(id);
-if (craftCost === Infinity) continue;
-const profit = (sellPrice * 0.85) - craftCost;
-const dailySales = salesData.get(String(id)) || 0;
-const suggestedSales = Math.round(dailySales * 0.10);
-if (profit > 0) results.push({ id, name: item?.name || `${t('unknownItem')} (${id})`, sellPrice, craftCost, profit, dailySales: suggestedSales, icon: item?.icon || null });
+    const results = [];
+    for (const id of ids) {
+        const item = itemData.get(id);
+        const price = priceData.get(id);
+        const sellPrice = price?.sells?.unit_price || 0;
+        let craftCost = categoryKey === 'bags' ? await calculateBagCraftCost(id) : await calculateItemCraftCost(id);
+        
+        // DEBUG: Log específico para el item 9571
+        if (id === 9571) {
+            console.log('=== DEBUG ITEM 9571 ===');
+            console.log('Item:', item?.name);
+            console.log('Sell Price:', sellPrice, 'copper');
+            console.log('Craft Cost:', craftCost, 'copper');
+            console.log('Craft Cost (G/S/C):', formatCopper(craftCost));
+            const profit = (sellPrice * 0.85) - craftCost;
+            console.log('Profit:', profit, 'copper');
+            console.log('Profit (G/S/C):', formatCopper(profit));
+            console.log('Daily Sales:', salesData.get(String(id)) || 0);
+            console.log('=====================');
+        }
+        
+        if (craftCost === Infinity) {
+            if (id === 9571) console.log('9571: craftCost is Infinity, skipping');
+            continue;
+        }
+        
+        const profit = (sellPrice * 0.85) - craftCost;
+        const dailySales = salesData.get(String(id)) || 0;
+        const suggestedSales = Math.round(dailySales * 0.10);
+        
+        if (profit > 0) {
+            results.push({
+                id,
+                name: item?.name || `${t('unknownItem')} (${id})`,
+                sellPrice,
+                craftCost,
+                profit,
+                dailySales: suggestedSales,
+                icon: item?.icon || null
+            });
+        } 
+    }
+    results.sort((a, b) => b.dailySales - a.dailySales);
+    categoryData[categoryKey] = results.slice(0, 10);
 }
-results.sort((a, b) => b.dailySales - a.dailySales);
-categoryData[categoryKey] = results.slice(0, 10);
-}
+ //fin sección maletas
 
-function renderCategoryTable(categoryKey, tbodyId) {
-const tbody = document.getElementById(tbodyId);
-tbody.innerHTML = '';
-const data = categoryData[categoryKey];
-if (data.length === 0) {
-tbody.innerHTML = `<tr><td colspan="7" class="text-center p-5 text-slate-400">${t('noData')}</td></tr>`;
-return;
-}
-data.forEach(item => {
-const tr = document.createElement('tr');
-tr.className = 'hover:bg-slate-700/50 transition-colors';
-const currentQty = userQuantities[categoryKey][item.id] || 0;
-const iconHtml = item.icon ? `<div class="w-8 h-8 bg-slate-600 rounded overflow-hidden flex-shrink-0"><img src="${item.icon}" alt="${item.name}" class="w-full h-full object-cover" onerror="this.parentElement.textContent='?'"></div>` : '<div class="w-8 h-8 bg-slate-600 rounded flex items-center justify-center">?</div>';
-tr.innerHTML = `
-<td class="p-3">${iconHtml}</td>
-<td class="p-3 text-white font-medium">${item.name}</td>
-<td class="p-3 text-amber-400">${formatCopper(item.sellPrice)}</td>
-<td class="p-3 text-slate-300 text-center">${item.dailySales}</td>
-<td class="p-3 text-green-400 font-bold">${formatCopper(item.profit)}</td>
-<td class="p-3 text-center"><input type="number" min="0" max="${item.dailySales}" value="${currentQty}" data-id="${item.id}" data-category="${categoryKey}" oninput="updateQuantity(this)" class="w-20 bg-slate-900 border border-slate-600 rounded px-2 py-1 text-white text-center focus:outline-none focus:border-amber-400"></td>
-<td class="p-3 text-amber-400 font-bold row-total">${formatCopper(item.profit * currentQty)}</td>
-`;
-tbody.appendChild(tr);
-});
-}
+ function renderCategoryTable(categoryKey, tbodyId) {
+     const tbody = document.getElementById(tbodyId);
+     tbody.innerHTML = '';
+     const data = categoryData[categoryKey];
+     if (data.length === 0) {
+         tbody.innerHTML = `<tr><td colspan="7" class="text-center p-5 text-slate-400">${t('noData')}</td></tr>`;
+         return;
+       }
+     data.forEach(item => {
+         const tr = document.createElement('tr');
+         tr.className = 'hover:bg-slate-700/50 transition-colors';
+         const currentQty = userQuantities[categoryKey][item.id] || 0;
+         const iconHtml = item.icon ? `<div class="w-8 h-8 bg-slate-600 rounded overflow-hidden flex-shrink-0"><img src="${item.icon}" alt="${item.name}" class="w-full h-full object-cover" onerror="this.parentElement.textContent='?'"></div>` : '<div class="w-8 h-8 bg-slate-600 rounded flex items-center justify-center">?</div>';
+         tr.innerHTML = `
+         <td class="p-3">${iconHtml}</td>
+         <td class="p-3 text-white font-medium">${item.name}</td>
+         <td class="p-3 text-amber-400">${formatCopper(item.sellPrice)}</td>
+         <td class="p-3 text-slate-300 text-center">${item.dailySales}</td>
+         <td class="p-3 text-green-400 font-bold">${formatCopper(item.profit)}</td>
+         <td class="p-3 text-center"><input type="number" min="0" max="${item.dailySales}" value="${currentQty}" data-id="${item.id}" data-category="${categoryKey}" oninput="updateQuantity(this)" class="w-20 bg-slate-900 border border-slate-600 rounded px-2 py-1 text-white text-center focus:outline-none focus:border-amber-400"></td>
+         <td class="p-3 text-amber-400 font-bold row-total">${formatCopper(item.profit * currentQty)}</td>
+         `;
+         tbody.appendChild(tr);
+        });
+   }
 
-function updateQuantity(input) {
-const id = parseInt(input.dataset.id);
-const category = input.dataset.category;
-let qty = parseInt(input.value) || 0;
-const maxQty = parseInt(input.max);
-if (qty > maxQty) { qty = maxQty; input.value = maxQty; }
-if (qty < 0) { qty = 0; input.value = 0; }
-userQuantities[category][id] = qty;
-const item = categoryData[category].find(i => i.id === id);
-if (item) input.closest('tr').querySelector('.row-total').textContent = formatCopper(item.profit * qty);
-}
+ function updateQuantity(input) {
+     const id = parseInt(input.dataset.id);
+     const category = input.dataset.category;
+     let qty = parseInt(input.value) || 0;
+     const maxQty = parseInt(input.max);
+     if (qty > maxQty) { qty = maxQty; input.value = maxQty; }
+     if (qty < 0) { qty = 0; input.value = 0; }
+     userQuantities[category][id] = qty;
+     const item = categoryData[category].find(i => i.id === id);
+     if (item) input.closest('tr').querySelector('.row-total').textContent = formatCopper(item.profit * qty);
+    }
 
-function calculateTotalProfit() {
-let totalProfit = 0;
-for (const cat of ['runes', 'sigils', 'relics', 'bags']) {
-for (const [idStr, qty] of Object.entries(userQuantities[cat])) {
-const id = parseInt(idStr);
-const item = categoryData[cat].find(i => i.id === id);
-if (item && qty > 0) totalProfit += item.profit * qty;
-}
-}
-return totalProfit;
-}
+ function calculateTotalProfit() {
+     let totalProfit = 0;
+     for (const cat of ['runes', 'sigils', 'relics', 'bags']) {
+         for (const [idStr, qty] of Object.entries(userQuantities[cat])) {
+             const id = parseInt(idStr);
+             const item = categoryData[cat].find(i => i.id === id);
+             if (item && qty > 0) totalProfit += item.profit * qty;
+           }
+        }
+     return totalProfit;
+    }
 
-async function buildShoppingList() {
-const requirements = new Map();
-for (const cat of ['runes', 'sigils', 'relics', 'bags']) {
-for (const [idStr, qty] of Object.entries(userQuantities[cat])) {
-if (parseInt(qty) > 0) await expandIngredients(parseInt(idStr), parseInt(qty), requirements, new Set());
-}
-}
-const list = [];
-let totalCost = 0;
-for (const [itemId, quantity] of requirements.entries()) {
-const item = itemData.get(itemId);
-const price = priceData.get(itemId);
-const vendorPrice = VENDOR_PRICES[itemId];
-const isVendorForced = VENDOR_FORCED_IDS.has(itemId);
-let tpPrice = Infinity;
-if (price) tpPrice = Math.min(price.buys?.unit_price ?? Infinity, price.sells?.unit_price ?? Infinity);
-const recipes = ingredientRecipes.get(itemId);
-let craftCost = Infinity;
-if (recipes && recipes.length > 0) {
-for (const recipe of recipes) {
-let total = 0, canCraft = true;
-for (const ing of recipe.ingredients) {
-const ingPrice = priceData.get(ing.id);
-if (ingPrice) {
-const ingTp = Math.min(ingPrice.buys?.unit_price ?? Infinity, ingPrice.sells?.unit_price ?? Infinity);
-if (ingTp === Infinity) { canCraft = false; break; }
-total += ingTp * ing.qty;
-} else { canCraft = false; break; }
-}
-if (canCraft && total > 0) {
-const costPerUnit = total / recipe.outputQty;
-if (costPerUnit < craftCost) craftCost = costPerUnit;
-}
-}
-}
-let source = 'tp', unitCost = tpPrice;
-if (isVendorForced && vendorPrice !== undefined) { source = 'vendor'; unitCost = vendorPrice; }
-else {
-if (vendorPrice !== undefined && vendorPrice < unitCost) { source = 'vendor'; unitCost = vendorPrice; }
-if (craftCost < unitCost && craftCost < Infinity) { source = 'craft'; unitCost = craftCost; }
-}
-if (unitCost === Infinity) { unitCost = 0; source = 'tp'; }
-totalCost += unitCost * quantity;
-list.push({ id: itemId, name: item?.name || `${t('unknownItem')} (${itemId})`, quantity, source, unitCost, total: unitCost * quantity, hasRecipe: recipes && recipes.length > 0, icon: item?.icon || null });
-}
-list.sort((a, b) => b.quantity - a.quantity);
-renderShoppingList(list, totalCost);
-}
+ async function buildShoppingList() {
+     const requirements = new Map();
+     for (const cat of ['runes', 'sigils', 'relics', 'bags']) {
+         for (const [idStr, qty] of Object.entries(userQuantities[cat])) {
+             if (parseInt(qty) > 0) await expandIngredients(parseInt(idStr), parseInt(qty), requirements, new Set());
+           }
+       }
+     const list = [];
+     let totalCost = 0;
+     for (const [itemId, quantity] of requirements.entries()) {
+         const item = itemData.get(itemId);
+         const price = priceData.get(itemId);
+         const vendorPrice = VENDOR_PRICES[itemId];
+         const isVendorForced = VENDOR_FORCED_IDS.has(itemId);
+         let tpPrice = Infinity;
+         if (price) tpPrice = Math.min(price.buys?.unit_price ?? Infinity, price.sells?.unit_price ?? Infinity);
+         const recipes = ingredientRecipes.get(itemId);
+         let craftCost = Infinity;
+         if (recipes && recipes.length > 0) {
+             for (const recipe of recipes) {
+                 let total = 0, canCraft = true;
+                 for (const ing of recipe.ingredients) {
+                     const ingPrice = priceData.get(ing.id);
+                     if (ingPrice) {
+                         const ingTp = Math.min(ingPrice.buys?.unit_price ?? Infinity, ingPrice.sells?.unit_price ?? Infinity);
+                         if (ingTp === Infinity) { canCraft = false; break; }
+                         total += ingTp * ing.qty;
+                       } else { canCraft = false; break; }
+                   }
+                 if (canCraft && total > 0) {
+                     const costPerUnit = total / recipe.outputQty;
+                     if (costPerUnit < craftCost) craftCost = costPerUnit;
+                   }
+               }
+           }
+         let source = 'tp', unitCost = tpPrice;
+         if (isVendorForced && vendorPrice !== undefined) { source = 'vendor'; unitCost = vendorPrice; }
+         else {
+             if (vendorPrice !== undefined && vendorPrice < unitCost) { source = 'vendor'; unitCost = vendorPrice; }
+             if (craftCost < unitCost && craftCost < Infinity) { source = 'craft'; unitCost = craftCost; }
+           }
+         if (unitCost === Infinity) { unitCost = 0; source = 'tp'; }
+         totalCost += unitCost * quantity;
+         list.push({ id: itemId, name: item?.name || `${t('unknownItem')} (${itemId})`, quantity, source, unitCost, total: unitCost * quantity, hasRecipe: recipes && recipes.length > 0, icon: item?.icon || null });
+       }
+     list.sort((a, b) => b.quantity - a.quantity);
+     renderShoppingList(list, totalCost);
+   }
 
-async function expandIngredients(itemId, quantity, requirements, visited) {
-if (visited.has(itemId)) { requirements.set(itemId, (requirements.get(itemId) || 0) + quantity); return; }
-visited.add(itemId);
-if (VENDOR_FORCED_IDS.has(itemId)) { requirements.set(itemId, (requirements.get(itemId) || 0) + quantity); return; }
-const item = itemData.get(itemId);
-if (item && item.flags && (item.flags.includes('AccountBound') || item.flags.includes('AccountBindOnUse') || item.flags.includes('SoulbindOnAcquire') || item.flags.includes('SoulBindOnUse'))) return;
-if (CRAFTABLE_CATEGORIES.has(itemId)) {
-let recipes = BAG_IDS.includes(itemId) ? bagRecipes.get(itemId) : otherRecipes.get(itemId);
-if (recipes && recipes.length > 0) {
-const recipe = recipes[0];
-for (const ing of recipe.ingredients) await expandIngredients(ing.id, Math.ceil((quantity / recipe.outputQty) * ing.qty), requirements, new Set(visited));
-} else requirements.set(itemId, (requirements.get(itemId) || 0) + quantity);
-return;
-}
-const recipes = ingredientRecipes.get(itemId);
-if (!recipes || recipes.length === 0) { requirements.set(itemId, (requirements.get(itemId) || 0) + quantity); return; }
-const price = priceData.get(itemId);
-let tpPrice = Infinity;
-if (price) tpPrice = Math.min(price.buys?.unit_price ?? Infinity, price.sells?.unit_price ?? Infinity);
-let craftCost = Infinity;
-for (const recipe of recipes) {
-let total = 0, canCraft = true;
-for (const ing of recipe.ingredients) {
-const ingPrice = priceData.get(ing.id);
-if (ingPrice) {
-const ingTp = Math.min(ingPrice.buys?.unit_price ?? Infinity, ingPrice.sells?.unit_price ?? Infinity);
-if (ingTp === Infinity) { canCraft = false; break; }
-total += ingTp * ing.qty;
-} else { canCraft = false; break; }
-}
-if (canCraft && total > 0) {
-const costPerUnit = total / recipe.outputQty;
-if (costPerUnit < craftCost) craftCost = costPerUnit;
-}
-}
-if (craftCost < tpPrice && craftCost < Infinity) {
-const recipe = recipes[0];
-for (const ing of recipe.ingredients) await expandIngredients(ing.id, Math.ceil((quantity / recipe.outputQty) * ing.qty), requirements, new Set(visited));
-} else requirements.set(itemId, (requirements.get(itemId) || 0) + quantity);
-}
+ async function expandIngredients(itemId, quantity, requirements, visited) {
+     if (visited.has(itemId)) { requirements.set(itemId, (requirements.get(itemId) || 0) + quantity); return; }
+     visited.add(itemId);
+     if (VENDOR_FORCED_IDS.has(itemId)) { requirements.set(itemId, (requirements.get(itemId) || 0) + quantity); return; }
+     const item = itemData.get(itemId);
+     if (item && item.flags && (item.flags.includes('AccountBound') || item.flags.includes('AccountBindOnUse') || item.flags.includes('SoulbindOnAcquire') || item.flags.includes('SoulBindOnUse'))) return;
+     if (CRAFTABLE_CATEGORIES.has(itemId)) {
+         let recipes = BAG_IDS.includes(itemId) ? bagRecipes.get(itemId) : otherRecipes.get(itemId);
+         if (recipes && recipes.length > 0) {
+             const recipe = recipes[0];
+             for (const ing of recipe.ingredients) await expandIngredients(ing.id, Math.ceil((quantity / recipe.outputQty) * ing.qty), requirements, new Set(visited));
+             } else requirements.set(itemId, (requirements.get(itemId) || 0) + quantity);
+         return;
+       }
+     const recipes = ingredientRecipes.get(itemId);
+     if (!recipes || recipes.length === 0) { requirements.set(itemId, (requirements.get(itemId) || 0) + quantity); return; }
+     const price = priceData.get(itemId);
+     let tpPrice = Infinity;
+     if (price) tpPrice = Math.min(price.buys?.unit_price ?? Infinity, price.sells?.unit_price ?? Infinity);
+     let craftCost = Infinity;
+     for (const recipe of recipes) {
+         let total = 0, canCraft = true;
+         for (const ing of recipe.ingredients) {
+             const ingPrice = priceData.get(ing.id);
+             if (ingPrice) {
+                 const ingTp = Math.min(ingPrice.buys?.unit_price ?? Infinity, ingPrice.sells?.unit_price ?? Infinity);
+                 if (ingTp === Infinity) { canCraft = false; break; }
+                 total += ingTp * ing.qty;
+               } else { canCraft = false; break; }
+            }
+         if (canCraft && total > 0) {
+             const costPerUnit = total / recipe.outputQty;
+             if (costPerUnit < craftCost) craftCost = costPerUnit;
+           }
+       }
+     if (craftCost < tpPrice && craftCost < Infinity) {
+         const recipe = recipes[0];
+         for (const ing of recipe.ingredients) await expandIngredients(ing.id, Math.ceil((quantity / recipe.outputQty) * ing.qty), requirements, new Set(visited));
+        } else requirements.set(itemId, (requirements.get(itemId) || 0) + quantity);
+    }
 
-function renderShoppingList(list, totalCost) {
-const totalProfit = calculateTotalProfit();
-const roi = totalCost > 0 ? (totalProfit / totalCost) * 100 : 0;
-document.getElementById('sumProfit').textContent = formatCopper(totalProfit);
-document.getElementById('sumCost').textContent = formatCopper(totalCost);
-document.getElementById('sumROI').textContent = `${roi.toFixed(2)}%`;
-const container = document.getElementById('shoppingListContainer');
-if (list.length === 0) { 
-container.innerHTML = `<div class="text-center py-10 text-slate-400">${t('emptyList')}</div>`; 
-return; 
-}
-container.innerHTML = '';
-list.forEach((item, idx) => {
-const div = document.createElement('div');
-div.className = 'bg-slate-900 rounded-lg border border-slate-700 overflow-hidden';
-const iconHtml = item.icon ? `<img src="${item.icon}" alt="${item.name}" class="w-full h-full object-cover" onerror="this.parentElement.textContent='?'">` : '?';
-let actionsHtml = '';
-if (item.source === 'vendor') actionsHtml = `<button class="px-3 py-1 bg-amber-700 hover:bg-amber-600 text-white rounded text-xs font-bold">${t('vendor')} ${formatCopper(item.unitCost)}</button>`;
-else if (item.source === 'craft') actionsHtml = `<button class="px-3 py-1 bg-blue-700 hover:bg-blue-600 text-white rounded text-xs font-bold mr-2">${t('sell')} ${formatCopper(getTpPrice(item.id))}</button><button class="px-3 py-1 bg-purple-700 hover:bg-purple-600 text-white rounded text-xs font-bold">${t('craft')} ${formatCopper(item.unitCost)}</button>`;
-else actionsHtml = `<button class="px-3 py-1 bg-blue-700 hover:bg-blue-600 text-white rounded text-xs font-bold">${t('buy')} ${formatCopper(item.unitCost)}</button>`;
-const hasSubitems = item.hasRecipe && item.source === 'craft';
-const expandHtml = hasSubitems ? `<span class="sl-expand text-slate-500 ml-2" id="expand-${idx}">▶</span>` : '';
-div.innerHTML = `
-<div class="flex items-center p-4 gap-4 cursor-pointer hover:bg-slate-800 transition-colors" ${hasSubitems ? `onclick="toggleSubitems(${idx})"` : ''}>
-<input type="checkbox" class="w-4 h-4 accent-amber-400" onclick="event.stopPropagation()">
-<div class="w-10 h-10 bg-slate-700 rounded overflow-hidden flex-shrink-0">${iconHtml}</div>
-<div class="flex-1 font-medium text-white"><span class="text-amber-400 font-bold mr-2">${item.quantity} x</span>${item.name}</div>
-<div class="flex items-center">${actionsHtml}${expandHtml}</div>
-</div>
-${hasSubitems ? `<div class="sl-subitems bg-slate-950 p-4 pl-16 border-t border-slate-700" id="subitems-${idx}"></div>` : ''}
-`;
-container.appendChild(div);
-if (hasSubitems) loadSubitems(idx, item.id, item.quantity);
-});
-}
+ function renderShoppingList(list, totalCost) {
+     const totalProfit = calculateTotalProfit();
+     const roi = totalCost > 0 ? (totalProfit / totalCost) * 100 : 0;
+     document.getElementById('sumProfit').textContent = formatCopper(totalProfit);
+     document.getElementById('sumCost').textContent = formatCopper(totalCost);
+     document.getElementById('sumROI').textContent = `${roi.toFixed(2)}%`;
+     const container = document.getElementById('shoppingListContainer');
+     if (list.length === 0) { 
+         container.innerHTML = `<div class="text-center py-10 text-slate-400">${t('emptyList')}</div>`; 
+         return; 
+        }
+     container.innerHTML = '';
+     list.forEach((item, idx) => {
+         const div = document.createElement('div');
+         div.className = 'bg-slate-900 rounded-lg border border-slate-700 overflow-hidden';
+         const iconHtml = item.icon ? `<img src="${item.icon}" alt="${item.name}" class="w-full h-full object-cover" onerror="this.parentElement.textContent='?'">` : '?';
+         let actionsHtml = '';
+         if (item.source === 'vendor') actionsHtml = `<button class="px-3 py-1 bg-amber-700 hover:bg-amber-600 text-white rounded text-xs font-bold">${t('vendor')} ${formatCopper(item.unitCost)}</button>`;
+         else if (item.source === 'craft') actionsHtml = `<button class="px-3 py-1 bg-blue-700 hover:bg-blue-600 text-white rounded text-xs font-bold mr-2">${t('sell')} ${formatCopper(getTpPrice(item.id))}</button><button class="px-3 py-1 bg-purple-700 hover:bg-purple-600 text-white rounded text-xs font-bold">${t('craft')} ${formatCopper(item.unitCost)}</button>`;
+         else actionsHtml = `<button class="px-3 py-1 bg-blue-700 hover:bg-blue-600 text-white rounded text-xs font-bold">${t('buy')} ${formatCopper(item.unitCost)}</button>`;
+         const hasSubitems = item.hasRecipe && item.source === 'craft';
+         const expandHtml = hasSubitems ? `<span class="sl-expand text-slate-500 ml-2" id="expand-${idx}">▶</span>` : '';
+         div.innerHTML = `
+         <div class="flex items-center p-4 gap-4 cursor-pointer hover:bg-slate-800 transition-colors" ${hasSubitems ? `onclick="toggleSubitems(${idx})"` : ''}>
+         <input type="checkbox" class="w-4 h-4 accent-amber-400" onclick="event.stopPropagation()">
+         <div class="w-10 h-10 bg-slate-700 rounded overflow-hidden flex-shrink-0">${iconHtml}</div>
+         <div class="flex-1 font-medium text-white"><span class="text-amber-400 font-bold mr-2">${item.quantity} x</span>${item.name}</div>
+         <div class="flex items-center">${actionsHtml}${expandHtml}</div>
+         </div>
+         ${hasSubitems ? `<div class="sl-subitems bg-slate-950 p-4 pl-16 border-t border-slate-700" id="subitems-${idx}"></div>` : ''}
+         `;
+         container.appendChild(div);
+         if (hasSubitems) loadSubitems(idx, item.id, item.quantity);
+        });
+    }
 
-function getTpPrice(itemId) {
-const price = priceData.get(itemId);
-if (!price) return 0;
-return Math.min(price.buys?.unit_price ?? Infinity, price.sells?.unit_price ?? Infinity);
-}
+ function getTpPrice(itemId) {
+     const price = priceData.get(itemId);
+     if (!price) return 0;
+     return Math.min(price.buys?.unit_price ?? Infinity, price.sells?.unit_price ?? Infinity);
+    }
 
-async function loadSubitems(idx, itemId, quantity) {
-const recipes = ingredientRecipes.get(itemId);
-if (!recipes || recipes.length === 0) return;
-const recipe = recipes[0];
-const container = document.getElementById('subitems-' + idx);
-container.innerHTML = '';
-for (const ing of recipe.ingredients) {
-const ingQty = Math.ceil((quantity / recipe.outputQty) * ing.qty);
-const ingItem = itemData.get(ing.id);
-const ingPrice = priceData.get(ing.id);
-let tpPrice = 0;
-if (ingPrice) tpPrice = Math.min(ingPrice.buys?.unit_price ?? Infinity, ingPrice.sells?.unit_price ?? Infinity);
-const iconHtml = ingItem?.icon ? `<img src="${ingItem.icon}" alt="${ingItem.name}" class="w-full h-full object-cover" onerror="this.style.display='none'">` : '';
-const subDiv = document.createElement('div');
-subDiv.className = 'flex items-center gap-3 py-2 text-sm';
-subDiv.innerHTML = `<span class="text-slate-500">─</span><div class="w-6 h-6 bg-slate-700 rounded overflow-hidden flex-shrink-0">${iconHtml}</div><span class="text-amber-400 font-bold">${ingQty} x</span><span class="text-slate-300">${ingItem?.name || `${t('unknownItem')} (${ing.id})`}</span><span class="ml-auto text-slate-500">${formatCopper(tpPrice)}</span>`;
-container.appendChild(subDiv);
-}
-}
+ async function loadSubitems(idx, itemId, quantity) {
+     const recipes = ingredientRecipes.get(itemId);
+     if (!recipes || recipes.length === 0) return;
+     const recipe = recipes[0];
+     const container = document.getElementById('subitems-' + idx);
+     container.innerHTML = '';
+     for (const ing of recipe.ingredients) {
+         const ingQty = Math.ceil((quantity / recipe.outputQty) * ing.qty);
+         const ingItem = itemData.get(ing.id);
+         const ingPrice = priceData.get(ing.id);
+         let tpPrice = 0;
+         if (ingPrice) tpPrice = Math.min(ingPrice.buys?.unit_price ?? Infinity, ingPrice.sells?.unit_price ?? Infinity);
+         const iconHtml = ingItem?.icon ? `<img src="${ingItem.icon}" alt="${ingItem.name}" class="w-full h-full object-cover" onerror="this.style.display='none'">` : '';
+         const subDiv = document.createElement('div');
+         subDiv.className = 'flex items-center gap-3 py-2 text-sm';
+         subDiv.innerHTML = `<span class="text-slate-500">─</span><div class="w-6 h-6 bg-slate-700 rounded overflow-hidden flex-shrink-0">${iconHtml}</div><span class="text-amber-400 font-bold">${ingQty} x</span><span class="text-slate-300">${ingItem?.name || `${t('unknownItem')} (${ing.id})`}</span><span class="ml-auto text-slate-500">${formatCopper(tpPrice)}</span>`;
+         container.appendChild(subDiv);
+        }
+    }
 
-function toggleSubitems(idx) {
-const sub = document.getElementById('subitems-' + idx);
-const expand = document.getElementById('expand-' + idx);
-if (sub.classList.contains('open')) { sub.classList.remove('open'); expand.classList.remove('open'); }
-else { sub.classList.add('open'); expand.classList.add('open'); }
-}
+ function toggleSubitems(idx) {
+     const sub = document.getElementById('subitems-' + idx);
+     const expand = document.getElementById('expand-' + idx);
+     if (sub.classList.contains('open')) { sub.classList.remove('open'); expand.classList.remove('open'); }
+     else { sub.classList.add('open'); expand.classList.add('open'); }
+    }
 
-function switchTab(tabName) {
-document.querySelectorAll('.tab-btn').forEach(t => {
-t.classList.remove('bg-amber-500', 'text-slate-900', 'border-amber-500');
-t.classList.add('bg-slate-800', 'text-slate-300', 'border-slate-700');
-});
-document.querySelectorAll('.tab-content').forEach(c => c.classList.add('hidden'));
-const activeBtn = document.querySelector(`.tab-btn[data-tab="${tabName}"]`);
-activeBtn.classList.remove('bg-slate-800', 'text-slate-300', 'border-slate-700');
-activeBtn.classList.add('bg-amber-500', 'text-slate-900', 'border-amber-500');
-document.getElementById('tab-' + tabName).classList.remove('hidden');
-if (tabName === 'shopping') buildShoppingList();
-}
+ function switchTab(tabName) {
+     document.querySelectorAll('.tab-btn').forEach(t => {
+         t.classList.remove('bg-amber-500', 'text-slate-900', 'border-amber-500');
+         t.classList.add('bg-slate-800', 'text-slate-300', 'border-slate-700');
+        });
+     document.querySelectorAll('.tab-content').forEach(c => c.classList.add('hidden'));
+     const activeBtn = document.querySelector(`.tab-btn[data-tab="${tabName}"]`);
+     activeBtn.classList.remove('bg-slate-800', 'text-slate-300', 'border-slate-700');
+     activeBtn.classList.add('bg-amber-500', 'text-slate-900', 'border-amber-500');
+     document.getElementById('tab-' + tabName).classList.remove('hidden');
+     if (tabName === 'shopping') buildShoppingList();
+    }
 
-function getCurrentTabIdx() {
-const active = document.querySelector('.tab-btn.bg-amber-500');
-return TAB_ORDER.indexOf(active.dataset.tab);
-}
-function nextTab() { switchTab(TAB_ORDER[(getCurrentTabIdx() + 1) % TAB_ORDER.length]); }
-function prevTab() { switchTab(TAB_ORDER[(getCurrentTabIdx() - 1 + TAB_ORDER.length) % TAB_ORDER.length]); }
+ function getCurrentTabIdx() {
+     const active = document.querySelector('.tab-btn.bg-amber-500');
+     return TAB_ORDER.indexOf(active.dataset.tab);
+    }
+ function nextTab() { switchTab(TAB_ORDER[(getCurrentTabIdx() + 1) % TAB_ORDER.length]); }
+ function prevTab() { switchTab(TAB_ORDER[(getCurrentTabIdx() - 1 + TAB_ORDER.length) % TAB_ORDER.length]); }
 
-async function updateAllData() {
-const btn = document.getElementById('updateBtn');
-const btnEn = document.getElementById('updateBtn-en');
-const loading = document.getElementById('loading');
-const errorDiv = document.getElementById('error');
-btn.disabled = true; btnEn.disabled = true;
-loading.classList.remove('hidden');
-errorDiv.classList.add('hidden');
-costCache.clear(); bagCostCache.clear();
-bagRecipes.clear(); ingredientRecipes.clear(); otherRecipes.clear();
-itemData.clear(); priceData.clear(); salesData.clear();
-try {
-await loadAllRecipes();
-await loadApiData();
-await Promise.all([processCategory(RUNE_IDS, 'runes'), processCategory(SEAL_IDS, 'sigils'), processCategory(RELIC_IDS, 'relics'), processCategory(BAG_IDS, 'bags')]);
-renderCategoryTable('runes', 'runesBody');
-renderCategoryTable('sigils', 'sigilsBody');
-renderCategoryTable('relics', 'relicsBody');
-renderCategoryTable('bags', 'bagsBody');
-const dateStr = new Date().toLocaleString();
-document.getElementById('lastUpdated').textContent = `Última actualización: ${dateStr}`;
-document.getElementById('lastUpdated-en').textContent = `Last Update: ${dateStr}`;
-} catch (e) {
-console.error(e);
-errorDiv.textContent = `Error: ${e.message}`;
-errorDiv.classList.remove('hidden');
-} finally {
-loading.classList.add('hidden');
-btn.disabled = false; btnEn.disabled = false;
-}
-}
+ async function updateAllData() {
+        const btn = document.getElementById('updateBtn');
+        const btnEn = document.getElementById('updateBtn-en');
+        const loading = document.getElementById('loading');
+        const errorDiv = document.getElementById('error');
+        btn.disabled = true; btnEn.disabled = true;
+        loading.classList.remove('hidden');
+        errorDiv.classList.add('hidden');
+        costCache.clear(); bagCostCache.clear();
+        bagRecipes.clear(); ingredientRecipes.clear(); otherRecipes.clear();
+        itemData.clear(); priceData.clear(); salesData.clear();
+        try {
+            await loadAllRecipes();
+            await loadApiData();
+            await Promise.all([processCategory(RUNE_IDS, 'runes'), processCategory(SEAL_IDS, 'sigils'), processCategory(RELIC_IDS, 'relics'), processCategory(BAG_IDS, 'bags')]);
+            renderCategoryTable('runes', 'runesBody');
+            renderCategoryTable('sigils', 'sigilsBody');
+            renderCategoryTable('relics', 'relicsBody');
+            renderCategoryTable('bags', 'bagsBody');
+            const dateStr = new Date().toLocaleString();
+            document.getElementById('lastUpdated').textContent = `Última actualización: ${dateStr}`;
+            document.getElementById('lastUpdated-en').textContent = `Last Update: ${dateStr}`;
+        } 
+        catch (e) {
+            console.error(e);
+            errorDiv.textContent = `Error: ${e.message}`;
+            errorDiv.classList.remove('hidden');
+        } finally {
+            loading.classList.add('hidden');
+            btn.disabled = false; btnEn.disabled = false;
+        }
+    }
 
-document.addEventListener('DOMContentLoaded', () => {
-const savedLang = localStorage.getItem('preferred-language') || 'es';
-setLanguage(savedLang);
-switchTab('runes');
-updateAllData();
-});
-</script>
+ document.addEventListener('DOMContentLoaded', () => {
+        const savedLang = localStorage.getItem('preferred-language') || 'es';
+        setLanguage(savedLang);
+        switchTab('runes');
+        updateAllData();
+    });
+ </script>
 </body>
 </html>
