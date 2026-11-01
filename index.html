@@ -583,6 +583,13 @@
         let categoryData = { runes: [], sigils: [], relics: [], bags: [] };
         let userQuantities = { runes: {}, sigils: {}, relics: {}, bags: {} };
         const TAB_ORDER = ['runes', 'sigils', 'relics', 'bags', 'shopping'];
+        //UMBRALES MÍNIMOS DE VENTAS SUGERIDAS POR CATEGORÍA
+        const sales_thresholds = {
+            runes: 6,
+            sigils: 10,
+            relics: 5,
+            bags: 10
+        };
         let costCache = new Map(), bagCostCache = new Map();
         function formatCopper(copper) {
             if (!copper || copper < 0) copper = 0;
@@ -795,7 +802,9 @@
                 }
             }
             results.sort((a, b) => b.dailySales - a.dailySales);
-            categoryData[categoryKey] = results.slice(0, 10);
+            const threshold = SALES_THRESHOLDS[categoryKey];
+            categoryData[categoryKey] = results.filter(r => r.dailySales >= threshold);
+            
         }
         //fin sección maletas
         function renderCategoryTable(categoryKey, tbodyId) {
