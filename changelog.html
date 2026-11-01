@@ -1,22 +1,66 @@
 <!DOCTYPE html>
 <html lang="es">
+
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <meta name="author" content="GW2 Top 10 Crafting">
+    <meta name="author" content="GW2 Top Crafting">
     <meta name="robots" content="index, follow">
-    <title>Changelog - GW2 TOP 10 Crafting</title>
+    <title>GW2 TOP Crafting</title>
+    <!-- TIPOGRAFIA DE LA PAGINA Google Fonts -->
+    <link rel="preconnect" href="https://fonts.googleapis.com" />
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+    <link
+        href="https://fonts.googleapis.com/css2?family=Nunito+Sans:ital,opsz,wght@0,6..12,200..1000;1,6..12,200..1000&display=swap"
+        rel="stylesheet" />
     <script src="https://cdn.tailwindcss.com"></script>
-</head>
-<body class="bg-slate-900 text-slate-200 font-sans antialiased flex flex-col min-h-screen">
+    <script>
+        tailwind.config = {
+            theme: {
+                extend: {
+                    fontFamily: {
+                        sans: ['"Nunito Sans"', "system-ui", "sans-serif"],
+                    },
+                },
+            },
+        };
+    </script>
+    <style>
+        .sl-expand {
+            transition: transform 0.2s;
+            user-select: none;
+        }
 
-    <!-- Header Unificado -->
+        .sl-expand.open {
+            transform: rotate(90deg);
+        }
+
+        .sl-subitems {
+            display: none;
+        }
+
+        .sl-subitems.open {
+            display: block;
+        }
+
+        input[type="number"]::-webkit-inner-spin-button,
+        input[type="number"]::-webkit-outer-spin-button {
+            -webkit-appearance: none;
+            margin: 0;
+        }
+    </style>
+</head>
+
+<body class="bg-slate-900 text-slate-200 font-sans antialiased flex flex-col min-h-screen">
+    <!-- ENCABEZADD DE PAGINA -->
     <header class="bg-slate-800 border-b border-slate-700 py-4 sticky top-0 z-50">
         <div class="max-w-6xl mx-auto px-6 flex justify-between items-center">
-            <a href="index.html" class="text-2xl font-bold text-amber-400 hover:text-amber-300 transition-colors">GW2 TOP 10 Crafting</a>
+            <a href="index.html" class="text-2xl font-bold text-amber-400 hover:text-amber-300 transition-colors">GW2 TOP Crafting</a>
             <div class="flex items-center space-x-2 text-sm font-medium">
-                <button onclick="setLanguage('en')" class="px-3 py-1 rounded bg-amber-400/20 hover:bg-amber-400/30 text-amber-400 border border-amber-400/50 transition-colors font-medium">EN</button>
-                <button onclick="setLanguage('es')" class="px-3 py-1 rounded bg-amber-400/20 hover:bg-amber-400/30 text-amber-400 border border-amber-400/50 transition-colors font-medium">ES</button>
+                <button onclick="setLanguage('en')"
+                    class="px-3 py-1 rounded bg-amber-400/20 hover:bg-amber-400/30 text-amber-400 border border-amber-400/50 transition-colors font-medium">EN</button>
+                <button onclick="setLanguage('es')"
+                    class="px-3 py-1 rounded bg-amber-400/20 hover:bg-amber-400/30 text-amber-400 border border-amber-400/50 transition-colors font-medium">ES</button>
             </div>
         </div>
     </header>
@@ -24,7 +68,7 @@
     <!-- Main Content -->
     <main class="flex-grow max-w-4xl mx-auto px-6 py-12 w-full">
         
-        <!-- Back Link -->
+        <!-- AVISO DE IR PARA ATRAS -->
         <a href="index.html" class="inline-flex items-center text-blue-400 hover:text-blue-300 mb-8 transition-colors font-medium">
             <svg class="w-4 h-4 mr-2" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M10 19l-7-7m0 0l7-7m-7 7h18"></path></svg>
             <span class="lang-es">Volver al inicio</span>
@@ -50,7 +94,7 @@
                 <p class="text-slate-500 text-sm italic lang-en hidden">Future updates will be documented here.</p>
             </div>
 
-            <!-- Version 1.2 (Latest) -->
+            <!-- Version 1.2.1 (Latest) -->
             <div class="relative bg-slate-800 rounded-lg p-6 border border-slate-700 border-l-4 border-l-green-500 shadow-lg">
                 <!-- Timeline Dot -->
                 <div class="absolute -left-[41px] top-6 w-5 h-5 rounded-full bg-green-500 border-4 border-slate-900 shadow-sm"></div>
@@ -58,9 +102,35 @@
                 <!-- ZONA DE LA VERSION Y FECHA -->
                 <div class="flex flex-col sm:flex-row sm:justify-between sm:items-center mb-4 gap-2">
                     <div class="flex items-center gap-3">
-                        <span class="text-2xl font-bold text-green-400">V1.2</span>
+                        <span class="text-2xl font-bold text-green-400">V1.2.1</span>
                         <span class="px-2 py-0.5 rounded-full bg-green-900/50 text-green-400 text-xs font-bold border border-green-700 lang-es">ACTUAL</span>
                         <span class="px-2 py-0.5 rounded-full bg-green-900/50 text-green-400 text-xs font-bold border border-green-700 lang-en hidden">LATEST</span>
+                    </div>
+                    <span class="text-slate-400 text-sm font-mono">2026-10-31</span>
+                </div>
+
+                <!-- ZONA DEL CONTENIDO DE LA VERSION -->
+                 <ul class="space-y-3">
+                    <li class="flex items-start">
+                        <span class="inline-block px-2 py-0.5 rounded text-xs font-bold bg-violet-900/50 text-violet-400 border border-violet-500 mr-3 mt-0.5 flex-shrink-0 lang-es">NUEV</span>
+                        <span class="inline-block px-2 py-0.5 rounded text-xs font-bold bg-violet-900/50 text-violet-400 border border-violet-500 mr-3 mt-0.5 flex-shrink-0 lang-en hidden">NEW</span>
+                        <span class="text-slate-300 lang-es">Actualización de apariencia visual y tipográfica.</span>
+                        <span class="text-slate-300 lang-en hidden">Visual and Typographic Update</span>
+                    </li>
+                 </ul>
+            </div>
+
+            <!-- Version 1.2 (Latest) -->
+            <div class="relative bg-slate-800 rounded-lg p-6 border border-slate-700 border-l-4 border-l-cyan-500 shadow-lg">
+                <!-- Timeline Dot -->
+                <div class="absolute -left-[41px] top-6 w-5 h-5 rounded-full bg-cyan-500 border-4 border-slate-900 shadow-sm"></div>
+                
+                <!-- ZONA DE LA VERSION Y FECHA -->
+                <div class="flex flex-col sm:flex-row sm:justify-between sm:items-center mb-4 gap-2">
+                    <div class="flex items-center gap-3">
+                        <span class="text-2xl font-bold text-cyan-400">V1.2</span>
+                        <span class="px-2 py-0.5 rounded-full bg-cyan-900/50 text-cyan-400 text-xs font-bold border border-cyan-700 lang-es">Anterior</span>
+                        <span class="px-2 py-0.5 rounded-full bg-cyan-900/50 text-cyan-400 text-xs font-bold border border-cyan-700 lang-en hidden">Previous</span>
                     </div>
                     <span class="text-slate-400 text-sm font-mono">2026-10-28</span>
                 </div>
@@ -68,8 +138,6 @@
                 <!-- ZONA DEL CONTENIDO DE LA VERSION -->
                  <ul class="space-y-3">
                     <li class="flex items-start">
-                        <span class="inline-block px-2 py-0.5 rounded text-xs font-bold bg-green-900/50 text-green-400 border border-green-800 mr-3 mt-0.5 flex-shrink-0 lang-es">NUEVO</span>
-                        <span class="inline-block px-2 py-0.5 rounded text-xs font-bold bg-green-900/50 text-green-400 border border-green-800 mr-3 mt-0.5 flex-shrink-0 lang-en hidden">NEW</span>
                         <span class="text-slate-300 lang-es">Inclusión de columna de ROI en todas las tablas.</span>
                         <span class="text-slate-300 lang-en hidden">Add an ROI column to all tables.</span>
                     </li>
@@ -77,15 +145,15 @@
             </div>
 
              <!-- Version 1.1 -->
-             <div class="relative bg-slate-800 rounded-lg p-6 border border-slate-700 border-l-4 border-l-cyan-500 shadow-lg">
+             <div class="relative bg-slate-800 rounded-lg p-6 border border-slate-700 border-l-4 border-l-cyan-900 shadow-lg">
                 <!-- Timeline Dot -->
-                <div class="absolute -left-[41px] top-6 w-5 h-5 rounded-full bg-cyan-500 border-4 border-slate-900 shadow-sm"></div>
+                <div class="absolute -left-[41px] top-6 w-5 h-5 rounded-full bg-cyan-900 border-4 border-slate-900 shadow-sm"></div>
                 
                 <div class="flex flex-col sm:flex-row sm:justify-between sm:items-center mb-4 gap-2">
                     <div class="flex items-center gap-3">
-                        <span class="text-2xl font-bold text-cyan-400">V1.1</span>
-                        <span class="px-2 py-0.5 rounded-full bg-cyan-900/50 text-cyan-400 text-xs font-bold border border-cyan-700 lang-es">Anterior</span>
-                        <span class="px-2 py-0.5 rounded-full bg-cyan-900/50 text-cyan-400 text-xs font-bold border border-cyan-700 lang-en hidden">Previous</span>
+                        <span class="text-2xl font-bold text-cyan-900">V1.1</span>
+                        <span class="px-2 py-0.5 rounded-full bg-cyan-900/50 text-cyan-700 text-xs font-bold border border-cyan-900 lang-es">Anterior</span>
+                        <span class="px-2 py-0.5 rounded-full bg-cyan-900/50 text-cyan-700 text-xs font-bold border border-cyan-900 lang-en hidden">Previous</span>
                     </div>
                     <span class="text-slate-400 text-sm font-mono">2026-09-26</span>
                 </div>
@@ -111,15 +179,15 @@
             </div>
 
             <!-- Version 1.0  -->
-            <div class="relative bg-slate-800 rounded-lg p-6 border border-slate-700 border-l-4 border-l-cyan-500 shadow-lg">
+            <div class="relative bg-slate-800 rounded-lg p-6 border border-slate-700 border-l-4 border-l-cyan-900 shadow-lg">
                 <!-- Timeline Dot -->
-                <div class="absolute -left-[41px] top-6 w-5 h-5 rounded-full bg-cyan-500 border-4 border-slate-900 shadow-sm"></div>
+                <div class="absolute -left-[41px] top-6 w-5 h-5 rounded-full bg-cyan-900 border-4 border-slate-900 shadow-sm"></div>
                 
                 <div class="flex flex-col sm:flex-row sm:justify-between sm:items-center mb-4 gap-2">
                     <div class="flex items-center gap-3">
-                        <span class="text-2xl font-bold text-cyan-400">V1.0</span>
-                        <span class="px-2 py-0.5 rounded-full bg-cyan-900/50 text-cyan-400 text-xs font-bold border border-cyan-700 lang-es">Anterior</span>
-                        <span class="px-2 py-0.5 rounded-full bg-cyan-900/50 text-cyan-400 text-xs font-bold border border-cyan-700 lang-en hidden">Previous</span>
+                        <span class="text-2xl font-bold text-cyan-900">V1.0</span>
+                        <span class="px-2 py-0.5 rounded-full bg-cyan-900/50 text-cyan-700 text-xs font-bold border border-cyan-900 lang-es">Anterior</span>
+                        <span class="px-2 py-0.5 rounded-full bg-cyan-900/50 text-cyan-700 text-xs font-bold border border-cyan-900 lang-en hidden">Previous</span>
                     </div>
                     <span class="text-slate-400 text-sm font-mono">2026-09-21</span>
                 </div>
@@ -222,8 +290,8 @@
          </div>
          <div class="border-t border-slate-700 pt-8">
              <div class="text-sm text-slate-400 space-y-2 mb-6">
-                 <p class="lang-es">GW2 TOP 10 Crafting es una herramienta no oficial creada por fans.</p>
-                 <p class="lang-en hidden">GW2 TOP 10 Crafting is an unofficial fan-made tool.</p>
+                 <p class="lang-es">GW2 TOP Crafting es una herramienta no oficial creada por fans.</p>
+                 <p class="lang-en hidden">GW2 TOP Crafting is an unofficial fan-made tool.</p>
                  <p class="lang-es">Guild Wars 2 y todos los logotipos, diseños y marcas asociadas son marcas comerciales o registradas de ArenaNet, LLC. Los datos de objetos y precios son proporcionados por la API oficial de Guild Wars 2.</p>
                  <p class="lang-en hidden">Guild Wars 2 and all associated logos, designs, and other marks are trademarks or registered trademarks of ArenaNet, LLC. Item data and prices are provided by the official Guild Wars 2 API.</p>
                  <p class="lang-es">Los datos de volumen de ventas son proporcionados por DataWars2.</p>
@@ -232,7 +300,7 @@
                  <p class="lang-en hidden">This site is not affiliated with, endorsed, sponsored, or specifically approved by ArenaNet, LLC or NCSoft.</p>
              </div>
              <div class="flex flex-col md:flex-row justify-between items-center">
-                 <div class="text-2xl font-bold text-amber-400 mb-4 md:mb-0">GW2 TOP 10 Crafting</div>
+                 <div class="text-2xl font-bold text-amber-400 mb-4 md:mb-0">GW2 TOP Crafting</div>
                  <div class="flex items-center space-x-2">
                      <button onclick="setLanguage('en')" class="px-3 py-1 rounded bg-amber-400/20 hover:bg-amber-400/30 text-amber-400 border border-amber-400/50 transition-colors font-medium">EN</button>
                      <button onclick="setLanguage('es')" class="px-3 py-1 rounded bg-amber-400/20 hover:bg-amber-400/30 text-amber-400 border border-amber-400/50 transition-colors font-medium">ES</button>
